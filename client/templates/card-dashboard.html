@@ -1,0 +1,36 @@
+<template name="cardDashboard">
+<div class="col-xs-12 dash-select text-center "> 
+<!-- <select class="select-menu" id="select-menu">
+	<option disabled="disabled" selected="selected">Select a meal</option>
+	{{#each meal}}
+		<option id="test" value="{{_id}}">{{mealDay}} {{mealTime}}</option>
+	{{/each}}
+</select> -->
+
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Meal Select <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+  	{{#each meal}}
+	    <li class="dropdownValue"><a href="#">{{mealDay}} {{mealTime}}</a></li>
+	    <li role="separator" class="divider"></li>
+    {{/each}}
+  </ul>
+</div>
+
+</div>
+	<div class="container-fluid col-xs-6 col-xs-offset-3 card-dashboard">
+	{{#each resident}}
+	<div class="col-xs-12 card card-pane">
+		<h2>{{name}} ({{rmNum}}) - {{texture}}</h2>
+		<p><strong>Meal Timer</strong> {{outputDay}} - {{outputTime}}</p>
+		<p><strong>Plate</strong> {{outputProtein}} {{outputVeg}} <!-- {{outputStarch}} --> </p>
+		<p><strong>Hot Bev</strong> {{outputHotBev}}</p>
+		<p><strong>Cold Bev</strong> {{outputColdBev}}</p>
+		<p>{{consistency}} <strong>liquids</strong></p>
+		<p><strong>Restrictions</strong> {{terms}}</p><br><br>
+	</div>
+	{{/each}}
+	</div>
+</template>

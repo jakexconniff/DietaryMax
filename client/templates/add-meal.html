@@ -1,0 +1,252 @@
+<template name="addMeal">
+	<div class="add-form col-sm-6 col-sm-offset-3">
+		<form class="form-horizontal" id="addMealForm">
+			<h2 class="text-center">Enter a Meal</h2>
+			<hr>
+			<div class="form-group">
+				<label for="meal-time" class="col-sm-2 control-label">Meal Time</label>
+				<div class="col-sm-10">
+					<label class="radio-inline">
+						<input type="radio" name="meal-time" id="breakfast" value="breakfast">Breakfast
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="meal-time" id="lunch" value="lunch">Lunch
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="meal-time" id="dinner" value="dinner">Dinner
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="meal-day" class="col-sm-2 control-label">Meal Day</label> 
+				<div class="col-sm-10">
+					<label class="radio-inline">
+						<input type="radio" name="meal-day" id="sunday" value="sunday">Sunday
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="meal-day" id="monday" value="monday">Monday
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="meal-day" id="tuesday" value="tuesday">Tuesday
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="meal-day" id="wednesday" value="wednesday">Wednesday
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="meal-day" id="thursday" value="thursday">Thursday
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="meal-day" id="friday" value="friday">Friday
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="meal-day" id="saturday" value="saturday">Saturday
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="mainProtein" class="col-sm-2 control-label">Main Protein
+				</label> 
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="mainProtein" placeholder="Sweet &amp; Sour Chicken">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 col-sm-offset-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLcsMainProtein" value="lcs">Lcs
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictNasMainProtein" value="nas">Nas
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLowSodiumMainProtein" value="low sodium">Low Sodium
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictRenalMainProtein" value="renal">Renal
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="altProtein" class="col-sm-2 control-label">Alt. Protein</label> 
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="altProtein" placeholder="Catch of the Day">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 col-sm-offset-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLcsAltProtein" value="lcs">Lcs
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictNasAltProtein" value="nas">Nas
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLowSodiumAltProtein" value="low sodium">Low Sodium
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictRenalAltProtein" value="renal">Renal
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="vegOne" class="col-sm-2 control-label">First Veggie</label> 
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="vegOne" placeholder="Broccoli">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 col-sm-offset-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLcsVegOne" value="lcs">Lcs
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictNasVegOne" value="nas">Nas
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLowSodiumVegOne" value="low sodium">Low Sodium
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictRenalVegOne" value="renal">Renal
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="vegTwo" class="col-sm-2 control-label">Second Veggie</label> 
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="vegTwo" placeholder="Snap Peas">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 col-sm-offset-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLcsVegTwo" value="lcs">Lcs
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictNasVegTwo" value="nas">Nas
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLowSodiumVegTwo" value="low sodium">Low Sodium
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictRenalVegTwo" value="renal">Renal
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="vegThree" class="col-sm-2 control-label">Third Veggie</label> 
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="vegThree" placeholder="Kale Fries">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 col-sm-offset-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLcsVegThree" value="lcs">Lcs
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictNasVegThree" value="nas">Nas
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLowSodiumVegThree" value="low sodium">Low Sodium
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictRenalVegThree" value="renal">Renal
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="starchOne" class="col-sm-2 control-label">First Starch</label> 
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="starchOne" placeholder="Garlic Mashed Potatoes">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 col-sm-offset-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLcsStarchOne" value="lcs">Lcs
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictNasStarchOne" value="nas">Nas
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLowSodiumStarchOne" value="low sodium">Low Sodium
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictRenalStarchOne" value="renal">Renal
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="altProtein" class="col-sm-2 control-label">Second Starch</label> 
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="starchTwo" placeholder="Spanish Rice">
+				</div>
+			</div>
+						<div class="form-group">
+				<div class="col-sm-2 col-sm-offset-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLcsStarchTwo" value="lcs">Lcs
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictNasStarchTwo" value="nas">Nas
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictLowSodiumStarchTwo" value="low sodium">Low Sodium
+					</label>
+				</div>
+				<div class="col-sm-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" id="restrictRenalStarchTwo" value="renal">Renal
+					</label>
+				</div>
+			</div>
+			
+			<div class="submit-results text-center">
+				<span id="submitIcon"> </span>
+				<span id="submitResults"> </span> <hr>
+			</div>
+
+			<button type="submit" class="btn btn-primary col-xs-offset-5 col-xs-2" id="mealSubmit" value="Submit Meal">Submit</button><br><br><br>
+		</form>
+	</div>
+</template>

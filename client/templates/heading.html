@@ -1,0 +1,44 @@
+<template name="heading">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Dietary Max</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="top-navbar">
+      <ul class="nav navbar-nav">
+        <li id="residentRoute" class="">{{#linkTo route="residents"}}<span>Resident List <span class="glyphicon glyphicon-user"></span></span>{{/linkTo}}</li>
+        <li id="cardRoute" class="">{{#linkTo route="cards"}}<span>Card List <span class="glyphicon glyphicon-th-list"></span></span>{{/linkTo}}</li>
+        <li id="mealListRoute" class="">{{#linkTo route="mealList"}}<span>Meal List <span class="glyphicon glyphicon-list-alt"></span></span>{{/linkTo}}</li>
+        <li id="addDropdown" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add <span class="glyphicon glyphicon-plus"></span></a>
+          <ul class="dropdown-menu">
+            <li role="separator" class="divider"></li>
+            <li id="addResidentRoute">{{#linkTo route="addResident"}}<span>a Resident</span>{{/linkTo}}</li>
+            <li role="separator" class="divider"></li>
+            <li id="addMealRoute">{{#linkTo route="addMeal"}}<span>a Meal</span>{{/linkTo}}</li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</template>
+
+
+
+
+<!--			<div class="top-nav col-xs-12 text-center">
+				{{#linkTo route="addCard"}}<p class="nav-item">Add a Card</p>{{/linkTo}}
+				{{#linkTo route="dashboard"}}<p class="nav-item">Resident List</p>{{/linkTo}}
+				{{#linkTo route="mealList"}}<p class="nav-item">Meal Station</p>{{/linkTo}}
+			</div>
+			 -->

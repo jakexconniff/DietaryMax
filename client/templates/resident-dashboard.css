@@ -1,0 +1,16 @@
+.resident-card {
+	border-radius: 25px;
+	top: 54px;
+	background-color: white;
+	margin-bottom: 4px;
+}
+
+.dash-select {
+	top: 50px;
+	font-size: 2rem;
+	margin: 2px;
+}
+
+.select-menu {
+	border-radius: 25px;
+}

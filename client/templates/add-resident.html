@@ -1,0 +1,115 @@
+<template name="addResident">
+	<form class="form-horizontal add-resident-form col-xs-6 col-xs-offset-3" id="addForm">
+		<h2 class="text-center">Input a Resident</h2>
+		<hr>
+		<div class="form-group">
+			<label for="inputName" class="col-sm-2 control-label">Name</label> 
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="inputName" placeholder="Robert Stark">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputRmNum" class="col-sm-2 control-label">Room Number</label> 
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="inputRmNum" placeholder="904" value="">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputTexture" class="col-sm-2 control-label">Texture</label> 
+			<div class="col-sm-10">
+				<label class="radio-inline">
+					<input type="radio" name="texture" id="regularRadio" value="regular">Regular
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="texture" id="groundRadio" value="ground">Ground
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="texture" id="pureeRadio" value="puree">Puree
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputRestrictions" class="col-sm-2 control-label">Dietary Restrictions</label>
+			<div class="col-sm-10">
+				<label class="checkbox-inline">
+					<input type="checkbox" id="lcs" value="lcs">Lcs
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" id="nas" value="nas">Nas
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" id="lowSodium" value="lowSodium">Low Sodium
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" id="renal" value="renal">Renal
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputThickness" class="col-sm-2 control-label">Beverage Thickness</label> 
+			<div class="col-sm-10">
+				<label class="radio-inline">
+					<input type="radio" name="thickness" id="thinRadio" value="thin">Thin
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="thickness" id="nectarRadio" value="nectar">Nectar
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="thickness" id="honeyRadio" value="honey">Honey
+				</label>
+			</div>
+		</div>
+		<div class="form-group" >
+			<label for="inputThickness" class="col-sm-2 control-label" id="hotBevChoice">Hot Beverage Choice</label> 
+			<div class="col-sm-10">
+				<label class="radio-inline">
+					<input type="radio" name="hotBev" id="coffeeRadio" value="coffee">Coffee
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="hotBev" id="coffeeRadio" value="tea">Tea
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="hotBev" id="hotCocoaRadio" value="Hot Cocoa">Hot Cocoa
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="hotBev" id="noHotBevRadio" value="none">None
+				</label>
+			</div>
+		</div>
+		<div class="form-group" >
+			<label for="inputThickness" class="col-sm-2 control-label" id="coldBevChoice">Cold Beverage Choice</label> 
+			<div class="col-sm-10">
+				<label class="radio-inline">
+					<input type="radio" name="hotBev" id="appleJuiceRadio" value="apple juice">Apple Juice
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="hotBev" id="orangeJuiceRadio" value="orange juice">Orange Juice
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="hotBev" id="cranberryJuiceRadio" value="cranberry juice">Cranberry Juice
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="hotBev" id="gingerAleRadio" value="ginger ale">Ginger Ale
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="hotBev" id="colaRadio" value="cola">Cola
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="hotBev" id="noColdBevRadio" value="none">None
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-2">
+			</div>
+			<div class="submit-results text-center col-xs-12">
+				<span id="cardSubmitIcon"> </span>
+				<span id="cardSubmitResults"> </span> <hr>
+			</div>
+		</div>
+
+				<button type="submit" class="btn btn-primary col-xs-offset-5" id="addButton" value="Add Resident!">Add Resident!</button><br><br><br>
+
+	</form>
+
+</template>

@@ -1,0 +1,42 @@
+<template name="mealList">
+	{{#each meal}}
+	<div class="row">
+		<div class="meal-pane col-sm-6 col-sm-offset-3">
+				<h2>{{mealTime}} - {{mealDay}}</h2><hr>
+				<p><span class="col-md-3"><strong>Main Protein</strong>:</span> <span class="col-md-9">{{mainProtein}} - <span class="strike">{{restrictionsMainProtein}}</span></span></p>
+				<p><span class="col-md-3"><strong>Alt. Protein</strong>:</span> <span class="col-md-9">{{altProtein}} - <span class="strike">{{restrictionsAltProtein}}</span></span></p>
+				<p><span class="col-md-3"><strong>Vegetable 1</strong>:</span> <span class="col-md-9">{{vegOne}} - <span class="strike">{{restrictionsVegOne}}</span></span></p>
+				<p><span class="col-md-3"><strong>Vegetable 2</strong>:</span> <span class="col-md-9">{{vegTwo}} - <span class="strike">{{restrictionsVegTwo}}</span></span></p>
+				<p><span class="col-md-3"><strong>Vegetable 3</strong>:</span> <span class="col-md-9">{{vegThree}} - <span class="strike">{{restrictionsVegThree}}</span></span></p>
+				<p><span class="col-md-3"><strong>Starch 1</strong>:</span> <span class="col-md-9">{{starchOne}} - <span class="strike">{{restrictionsStarchOne}}</span></span></p>
+				<p><span class="col-md-3"><strong>Starch 2</strong>:</span> <span class="col-md-9">{{starchTwo}} - <span class="strike">{{restrictionsStarchOne}}</span></span></p>
+				<p><span class="col-md-3"><strong>Added on</strong>:</span> <span class="col-md-9">{{addedOn}}</span></p>
+		</div>
+	</div>
+	{{/each}}
+
+</template>
+<!-- HOW TO USE: Apply a unique ID to each form group, and in JS, getelement of that form group and then modify value through there. -->
+<template name="mealButtons">
+	<div class="col-sm-1">
+		<label class="checkbox-inline col-sm-1">
+			<input type="checkbox" id="lcs" value="lcs">LCS
+		</label>
+	</div>
+	<div class="col-sm-1">
+		<label class="checkbox-inline col-sm-1">
+			<input type="checkbox" id="nas" value="nas">NAS
+		</label>
+		<div class="col-sm-1">
+			<label class="checkbox-inline col-sm-1">
+				<input type="checkbox" id="lowSodium" value="lowSodium">Low Sodium
+			</label>
+		</div>
+		<div class="col-sm-1">
+			<label class="checkbox-inline col-sm-1">
+				<input type="checkbox" id="renal" value="renal">Renal
+			</label>
+		</div>
+	</div>
+
+</template>

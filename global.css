@@ -1,0 +1,11 @@
+.meal-card {
+  font-family: sans-serif;
+}
+
+.min-bottom-margin {
+	margin-bottom: 4px;
+}
+
+body {
+	height: 101vh;
+}

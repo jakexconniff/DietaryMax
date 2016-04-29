@@ -1,0 +1,9 @@
+.card-dashboard {
+	top: 54px;
+}
+
+.card-pane {
+	border-radius: 25px;
+	background-color: white;
+	margin-bottom: 4px;
+}

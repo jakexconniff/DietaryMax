@@ -1,0 +1,11 @@
+<template name="residentDashboard">
+	{{#each resident}}
+	<div class="resident-card col-xs-6 col-xs-offset-3">
+		<h2>{{name}}({{rmNum}}) - {{texture}}</h2>
+		<p><strong>Restrictions</strong>: {{terms}}</p>
+		<p><strong>Liquid Consistency</strong>: {{consistency}}</p>
+		<p><strong>Hot Beverage</strong>: {{hotBev}}</p>
+		<p><strong>Cold Beverage</strong>: {{coldBev}}</p>
+	</div>
+	{{/each}}
+</template>
