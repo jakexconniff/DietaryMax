@@ -4,7 +4,7 @@
 	</div>
 	{{#each resident}}
 	<div class="resident-card col-xs-12 col-md-6 col-md-offset-3" id={{cardId}}>
-		<h2>{{name}}({{rmNum}}) - {{texture}}</h2>
+		<h2>{{name}}({{rmNum}}) - {{texture}}<span class="glyphicon glyphicon-remove hidden" id="removeResident"></span></h2>
 		<div class="terms" id="terms">
 			<p><strong>Restrictions</strong>:
 				<span id="removeLcs">{{showLcs}}</span>

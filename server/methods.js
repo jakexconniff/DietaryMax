@@ -1,8 +1,9 @@
 Meteor.methods({
     'createResident': function(resident){
-        console.log(resident);
-
         ResidentList.insert(resident);
+    },
+    'removeResident': function(resident){
+        ResidentList.remove(resident);
     },
     'createMeal': function(meal){
     	console.log(meal);

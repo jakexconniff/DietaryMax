@@ -20,7 +20,7 @@ $(window).scroll(function(event) {
   Template.residentDashboard.helpers({
     resident : function() {
       Meteor.subscribe('Residents.public');
-      return ResidentList.find({}, {limit: Session.get("residentLimit")});
+      return ResidentList.find({}, { sort: { 'rmNum' : 1 }} ,{limit: Session.get("residentLimit")});
     },
     residentId: function() {
       return this._id;
@@ -135,7 +135,6 @@ $(window).scroll(function(event) {
   });
 
   Template.residentDashboard.events({
-
     'click #toggleEditSpan': function (){
       swapEdit++;
       console.log(this);
@@ -143,15 +142,24 @@ $(window).scroll(function(event) {
       if (swapEdit % 2 == 0) {
         for (var i=0; i<document.getElementsByClassName("termsedit").length; i++) {
           document.getElementsByClassName("termsedit")[i].className = "termsedit hidden";
+          document.getElementsByClassName("glyphicon-remove")[i].className = "glyphicon glyphicon-remove hidden";
         }
       }
       else if (swapEdit % 2 == 1) {
         for (var i=0; i<document.getElementsByClassName("termsedit").length; i++) {
           document.getElementsByClassName("termsedit")[i].className = "termsedit shown";
+          document.getElementsByClassName("glyphicon-remove")[i].className = "glyphicon glyphicon-remove shown";
         }
       }
       console.log(document.getElementsByClassName("termsedit"));
     },
+
+    'click #removeResident': function() {
+      if(swapEdit % 2 == 1) {
+        Meteor.call('removeResident', this);
+      }
+    },
+
     'click #removeLcs': function() {
       if (swapEdit % 2 == 1) {
         Meteor.call('toggleLcs', this._id, this.lcs);
