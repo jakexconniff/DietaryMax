@@ -1,7 +1,7 @@
   if(Meteor.isClient){
     var residentCount = 0;
     var cardSubmitText = "";
-    Template.addResident.helpers({  
+    Template.addResident.helpers({
       cardSubmitResults : function() {
         return cardSubmitText;
       }
@@ -58,7 +58,7 @@
       },
       'submit #addForm' : function () {
         event.preventDefault();
-        if (event.target.inputName.value == "" || event.target.inputRmNum.value == "" || Session.get('selectedTexture') == "" 
+        if (event.target.inputName.value == "" || event.target.inputRmNum.value == "" || Session.get('selectedTexture') == ""
           || Session.get('selectedThickness') == "") {
           cardSubmitText = "You have left a field blank! All fields but restrictions are required.";
         document.getElementById("cardSubmitResults").innerHTML = cardSubmitText;
@@ -69,8 +69,7 @@
         document.getElementById("cardSubmitResults").innerHTML = cardSubmitText;
         residentCount += 1;
         console.log(event.target.lcs);
-        ResidentList.insert({
-          id: "resident" + residentCount,
+        var resident = {
           name : event.target.inputName.value,
           rmNum: event.target.inputRmNum.value,
           texture: Session.get('selectedTexture'),
@@ -85,14 +84,29 @@
           veg: ' ',
           starch: ' ',
           terms: []
-        }
-        ); 
-        Session.set('selectedTexture','');
-        Session.set('selectedThickness','');
-        Session.set('selectedLcs', false);
-        Session.set('selectedNas', false);
-        Session.set('selectedLowSodium', false);
-        Session.set('selectedRenal', false);
+        };
+
+        if (resident.lcs == true) {
+            resident.terms.push("lcs");
+          }
+          if (resident.nas == true) {
+            resident.terms.push("nas");
+          }
+          if (resident.lowSodium == true) {
+            resident.terms.push("low sodium");
+          }
+          if (resident.renal == true) {
+            resident.terms.push("renal");
+          }
+      Meteor.call('createResident', resident);
+      //ResidentList.insert(resident);
+      resident.terms = [];
+      Session.set('selectedTexture','');
+      Session.set('selectedThickness','');
+      Session.set('selectedLcs', false);
+      Session.set('selectedNas', false);
+      Session.set('selectedLowSodium', false);
+      Session.set('selectedRenal', false);
         /*document.getElementById("inputName") = "";
         document.getElementById("inputRmNum") = "";
         document.getElementById("lcs").checked = false;
@@ -107,4 +121,4 @@
       }
     }
   });
-  }
+}

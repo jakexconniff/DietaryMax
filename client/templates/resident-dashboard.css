@@ -1,6 +1,6 @@
 .resident-card {
 	border-radius: 25px;
-	top: 54px;
+	top: 58px;
 	background-color: white;
 	margin-bottom: 4px;
 }
@@ -13,4 +13,22 @@
 
 .select-menu {
 	border-radius: 25px;
+}
+
+.restopp {
+	font-size: 30px;
+	display: inline;
+}
+
+.hidden {
+	opacity: 0;
+}
+
+.shown {
+	opacity: 100;
+}
+
+.edit-resident-button {
+	position: relative;
+	top: 54px;
 }

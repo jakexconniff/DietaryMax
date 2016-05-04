@@ -1,5 +1,6 @@
 	Template.mealList.helpers({
 		meal: function() {
+			Meteor.subscribe("Meals.public");
 			return MealList.find();
 		},
 		restrictionsMainProtein: function() {

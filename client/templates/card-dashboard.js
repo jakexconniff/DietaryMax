@@ -1,3 +1,24 @@
+
+
+// Infinite Scroll
+lastScrollTop = 0;
+$(window).scroll(function(event) {
+if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+var scrollTop = $(this).scrollTop();
+if (scrollTop > lastScrollTop) {
+	console.log("Wheeeee");
+Session.set("residentLimit", Session.get("residentLimit") + 8);
+}
+lastScrollTop = scrollTop;
+}});
+
+
+Template.cardDashboard.onCreated(function() {
+	Session.set("residentLimit", 8);
+	const meals = Meteor.subscribe('Meals.public');
+	
+});
+
 Template.cardDashboard.helpers({
 	card: function() {
 		return CardsList.find().fetch();
@@ -6,7 +27,8 @@ Template.cardDashboard.helpers({
 		return MealList.find().fetch();
 	},
 	resident: function() {
-		return ResidentList.find().fetch();
+		Meteor.subscribe('Residents.all', Session.get("residentLimit"));
+		return ResidentList.find({}, {limit: Session.get("residentLimit")});
 	},
 	outputDay: function() {
 		return Session.get('displayDay');
@@ -28,11 +50,31 @@ Template.cardDashboard.helpers({
       //if (this.dislikes.indexOf(displayMainProtein)) return Session.get('displayAltProtein');
       	if (selectedMeal) {
 			if (selectedMeal.restrictLcsMainProtein == true) {
-				console.log(Session.get('displayAltProtein'));
-				if (this.lcs == true) return Session.get('displayAltProtein');
-				else return Session.get('displayMainProtein');
+				//if (this.lcs == true) return Session.get('displayAltProtein');
+				if (this.lcs == true) {
+					var protein = Session.get("displayAltProtein");
+				}	
 			}
-			else return Session.get('displayMainProtein');
+			if (selectedMeal.restrictNasMainProtein == true) {
+				if (this.nas == true) {
+					var protein = Session.get("displayAltProtein");
+				}
+			}
+			if (selectedMeal.restrictLowSodiumMainProtein == true) {
+				if (this.lowSodium == true) {
+					var protein = Session.get("displayAltProtein");
+				}
+			}
+			if (selectedMeal.restrictRenalMainProtein == true) {
+				if (this.renal == true) {
+					var protein = Session.get("displayAltProtein");
+				}
+			}
+			if (protein !== Session.get("displayAltProtein")) {
+				var protein = Session.get("displayMainProtein");
+			};
+				console.log(protein);
+				return protein;
 		}
 	},
 	outputVeg: function() {
@@ -41,18 +83,6 @@ Template.cardDashboard.helpers({
 	},
 
 	terms: function() {
-      if (this.lcs == true) {
-        this.terms.push("lcs");
-      }
-      if (this.nas == true) {
-        this.terms.push("nas");
-      }
-      if (this.lowSodium == true) {
-        this.terms.push("low sodium");
-      }
-      if (this.renal == true) {
-        this.terms.push("renal");
-      }
       console.log(this.terms);
       return this.terms.join(", ");
 	}

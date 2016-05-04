@@ -75,7 +75,7 @@ Template.addMeal.events({
 		else{
 			submitText = "You have successfully inserted a meal!";
 			document.getElementById("submitResults").innerHTML = submitText;
-			MealList.insert({
+			var meal = {
 				addedOn: new Date(),
 				id: MealList.find().count(),
 				mealTime: Session.get('mealTime'),
@@ -122,7 +122,9 @@ Template.addMeal.events({
 				restrictNasStarchTwo: event.target.restrictNasStarchTwo.checked,
 				restrictLowSodiumStarchTwo: event.target.restrictLowSodiumStarchTwo.checked,
 				restrictRenalStarchTwo: event.target.restrictRenalStarchTwo.checked
-			});
+			};
+		console.log(meal);
+		Meteor.call('createMeal', meal);
 		}
 	}
 });

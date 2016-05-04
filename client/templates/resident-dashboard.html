@@ -1,8 +1,27 @@
 <template name="residentDashboard">
+	<div class="container-fluid">
+		<button class="btn btn-large edit-resident-button col-xs-6 col-xs-offset-3 col-md-2 col-md-offset-5 " id="toggleEditSpan">Edit Residents</button>
+	</div>
 	{{#each resident}}
-	<div class="resident-card col-xs-6 col-xs-offset-3">
+	<div class="resident-card col-xs-12 col-md-6 col-md-offset-3" id={{cardId}}>
 		<h2>{{name}}({{rmNum}}) - {{texture}}</h2>
-		<p><strong>Restrictions</strong>: {{terms}}</p>
+		<div class="terms" id="terms">
+			<p><strong>Restrictions</strong>:
+				<span id="removeLcs">{{showLcs}}</span>
+				<span id="removeNas">{{showNas}}</span>
+				<span id="removeLowSodium">{{showLowSodium}}</span>
+				<span id="removeRenal">{{showRenal}}</span>
+			</p>
+		</div>
+		<div class="termsedit hidden" id="editToggle">
+			<p><strong>Add a Restriction!</strong>:
+				<span id="addLcs">{{addLcs}}</span>
+				<span id="addNas">{{addNas}}</span>
+				<span id="addLowSodium">{{addLowSodium}}</span>
+				<span id="addRenal">{{addRenal}}</span>
+			</p>
+		</div>
+
 		<p><strong>Liquid Consistency</strong>: {{consistency}}</p>
 		<p><strong>Hot Beverage</strong>: {{hotBev}}</p>
 		<p><strong>Cold Beverage</strong>: {{coldBev}}</p>
