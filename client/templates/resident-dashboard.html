@@ -1,6 +1,6 @@
 <template name="residentDashboard">
-	<div class="container-fluid">
-		<button class="btn btn-large edit-resident-button col-xs-6 col-xs-offset-3 col-md-2 col-md-offset-5 " id="toggleEditSpan">Edit Residents</button>
+	<div class="container-fluid edit-resident-button">
+		<button class="btn btn-large col-xs-6 col-xs-offset-3 col-md-2 col-md-offset-5" id="toggleEditSpan">Edit Residents</button>
 	</div>
 	{{#each resident}}
 	<div class="resident-card col-xs-12 col-md-6 col-md-offset-3" id={{cardId}}>
@@ -21,8 +21,24 @@
 				<span id="addRenal">{{addRenal}}</span>
 			</p>
 		</div>
-
-		<p><strong>Liquid Consistency</strong>: {{consistency}}</p>
+		<div class="liquid-consistency">
+			<p><strong>Liquid Consistency</strong>: {{consistency}}</p>
+		</div>
+		<div class="termsedit hidden" id="editLiquidToggle">
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    Edit Liquid Consistency <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+				    <li class="liquidDropdown" id="thinSelect"><a href="#">Thin</a></li>
+					  <li class="liquidDropdown" id="nectarSelect"><a href="#">Nectar</a></li>
+						<li class="liquidDropdown" id="honeySelect"><a href="#">Honey</a></li>
+			  </ul>
+			</div>
+		</div>
+		<div class="consistency hidden" id="consistencyToggle">
+			<p>skdjfkjdsfjk</p>
+		</div>
 		<p><strong>Hot Beverage</strong>: {{hotBev}}</p>
 		<p><strong>Cold Beverage</strong>: {{coldBev}}</p>
 	</div>

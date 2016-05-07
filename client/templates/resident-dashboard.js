@@ -3,16 +3,21 @@ var selectedTime = "";
 var swapEdit = 0;
 var termsOpp = [];
 Session.set("residentLimit", 8);
+Session.set("searchBy", "letter");
 
-// infinite Scroll Code
+// Infinite Scroll Code
 lastScrollTop = 0;
 $(window).scroll(function(event) {
   if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
     var scrollTop = $(this).scrollTop();
     if (scrollTop > lastScrollTop) {
+      applyEdits();
       Session.set("residentLimit", Session.get("residentLimit") + 8);
+
     }
     lastScrollTop = scrollTop;
+    console.log("Hello");
+    console.log("World");
   }});
 
   console.log(swapEdit);
@@ -20,7 +25,11 @@ $(window).scroll(function(event) {
   Template.residentDashboard.helpers({
     resident : function() {
       Meteor.subscribe('Residents.public');
-      return ResidentList.find({}, { sort: { 'rmNum' : 1 }} ,{limit: Session.get("residentLimit")});
+      var searchParam = Session.get("search");
+      var searchQuery = new RegExp(searchParam, "i");
+      console.log(searchQuery);
+      if (Session.get("searchBy") == "numeric") {return ResidentList.find({rmNum: searchQuery}, { sort: { 'rmNum' : 1 }} ,{limit: Session.get("residentLimit")});}
+      if (Session.get("searchBy") == "letter") {return ResidentList.find({name: searchQuery}, { sort: { 'rmNum' : 1 }} ,{limit: Session.get("residentLimit")});}
     },
     residentId: function() {
       return this._id;
@@ -131,7 +140,9 @@ $(window).scroll(function(event) {
         }
       }
       return temp + " ";
-    }
+    },
+
+
   });
 
   Template.residentDashboard.events({
@@ -139,18 +150,7 @@ $(window).scroll(function(event) {
       swapEdit++;
       console.log(this);
       console.log(swapEdit);
-      if (swapEdit % 2 == 0) {
-        for (var i=0; i<document.getElementsByClassName("termsedit").length; i++) {
-          document.getElementsByClassName("termsedit")[i].className = "termsedit hidden";
-          document.getElementsByClassName("glyphicon-remove")[i].className = "glyphicon glyphicon-remove hidden";
-        }
-      }
-      else if (swapEdit % 2 == 1) {
-        for (var i=0; i<document.getElementsByClassName("termsedit").length; i++) {
-          document.getElementsByClassName("termsedit")[i].className = "termsedit shown";
-          document.getElementsByClassName("glyphicon-remove")[i].className = "glyphicon glyphicon-remove shown";
-        }
-      }
+      applyEdits();
       console.log(document.getElementsByClassName("termsedit"));
     },
 
@@ -203,3 +203,21 @@ $(window).scroll(function(event) {
       Meteor.call('toggleRenal', this._id, this.renal);
     },
   });
+
+  function applyEdits() {
+    console.log(swapEdit);
+    console.log(document.getElementsByClassName("termsedit"));
+    if (swapEdit % 2 == 0) {
+      for (var i=0; i<document.getElementsByClassName("termsedit").length; i++) {
+        document.getElementsByClassName("termsedit")[i].className = "termsedit hidden";
+        document.getElementsByClassName("glyphicon-remove")[i].className = "glyphicon glyphicon-remove hidden";
+      }
+    }
+    else if (swapEdit % 2 == 1) {
+      for (var i=0; i<document.getElementsByClassName("termsedit").length; i++) {
+        document.getElementsByClassName("termsedit")[i].className = "termsedit shown";
+        document.getElementsByClassName("glyphicon-remove")[i].className = "glyphicon glyphicon-remove shown";
+      }
+    }
+
+  }
