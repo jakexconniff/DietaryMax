@@ -1,17 +1,52 @@
 <template name="mealList">
-	{{#each meal}}
-	<div class="row">
-		<div class="meal-pane col-sm-6 col-sm-offset-3">
-				<h2>{{mealTime}} - {{mealDay}}</h2><hr>
-				<p><span class="col-md-3"><strong>Main Protein</strong>:</span> <span class="col-md-9">{{mainProtein}} - <span class="strike">{{restrictionsMainProtein}}</span></span></p>
-				<p><span class="col-md-3"><strong>Alt. Protein</strong>:</span> <span class="col-md-9">{{altProtein}} - <span class="strike">{{restrictionsAltProtein}}</span></span></p>
-				<p><span class="col-md-3"><strong>Vegetable 1</strong>:</span> <span class="col-md-9">{{vegOne}} - <span class="strike">{{restrictionsVegOne}}</span></span></p>
-				<p><span class="col-md-3"><strong>Vegetable 2</strong>:</span> <span class="col-md-9">{{vegTwo}} - <span class="strike">{{restrictionsVegTwo}}</span></span></p>
-				<p><span class="col-md-3"><strong>Starch 1</strong>:</span> <span class="col-md-9">{{starchOne}} - <span class="strike">{{restrictionsStarchOne}}</span></span></p>
-				<p><span class="col-md-3"><strong>Starch 2</strong>:</span> <span class="col-md-9">{{starchTwo}} - <span class="strike">{{restrictionsStarchTwo}}</span></span></p>
-				<p><span class="col-md-3"><strong>Added on</strong>:</span> <span class="col-md-9">{{addedOn}}</span></p>
-		</div>
+	<div class="container-fluid edit-resident-panel col-xs-12">
+		<button class="btn btn-lg col-xs-6 col-xs-offset-3 col-md-2 col-md-offset-5 edit-resident-button" id="toggleEditMealsSpan">
+			Edit Meals <span class="glyphicon glyphicon-pencil"></span></button>
 	</div>
+
+	{{#each meal}}
+		<div class="meal-pane col-xs-6 col-xs-offset-3">
+				<h2>{{mealTime}} - {{mealDay}}</h2><hr>
+				<div class="row">
+					<span class="col-xs-3"><strong>Main Protein</strong>:</span>
+					<span class="col-xs-4">{{mainProtein}}</span>
+					<span class="strike col-xs-4">{{restrictionsMainProtein}}</span>
+				</div>
+				<div class="mainproteinedit hidden">
+					<span class="col-xs-7"></span><span class="col-xs-4">{{addRestrictionsMainProtein}}</span>
+				</div>
+				<div class="row">
+					<span class="col-xs-3"><strong>Alt. Protein</strong>:</span>
+					<span class="col-xs-4">{{altProtein}}</span>
+					<span class="strike col-xs-4">{{restrictionsAltProtein}}</span>
+				</div>
+				<div class="row">
+					<span class="col-xs-3"><strong>Vegetable 1</strong>:</span>
+						<span class="col-xs-4">{{vegOne}}</span>
+						<span class="strike col-xs-4">{{restrictionsVegOne}}</span>
+				</div>
+				<div class="row">
+					<span class="col-xs-3"><strong>Vegetable 2</strong>:</span>
+						<span class="col-xs-4">{{vegTwo}}</span>
+						<span class="strike col-xs-4">{{restrictionsVegTwo}}</span>
+				</div>
+				<div class="row">
+					<span class="col-xs-3"><strong>Starch 1</strong>:</span>
+						<span class="col-xs-4">{{starchOne}}</span>
+						<span class="strike col-xs-4">{{restrictionsStarchOne}}</span>
+				</div>
+				<div class="row">
+				<span class="col-xs-3"><strong>Starch 2</strong>:</span>
+					<span class="col-xs-4">{{starchTwo}}</span>
+					<span class="strike col-xs-4">{{restrictionsStarchTwo}}</span>
+				</div>
+				<div class="row">
+					<span class="col-xs-3"><strong>Added on</strong>:</span>
+						<span class="col-xs-4">{{addedOn}}</span>
+				</div>
+			</div>
+			<div class="col-xs-3">
+			</div>
 	{{/each}}
 
 </template>

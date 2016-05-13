@@ -11,3 +11,16 @@ body {
   font-size: 1.6rem;
   background-color: #00F1FF;
 }
+
+
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
+}
+
+.accent-blue {
+  color: #334866;
+}

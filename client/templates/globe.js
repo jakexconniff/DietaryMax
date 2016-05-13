@@ -76,5 +76,20 @@ globe = {
     }
 
 
+  },
+
+  applyMealEdits: function(swapEdit) {
+    mainProteinEdit = document.getElementsByClassName("mainproteinedit");
+    if (swapEdit % 2 == 0) {
+      for (var i=0; i<mainProteinEdit.length; i++) {
+        mainProteinEdit[i].className = "mainproteinedit hidden";
+      }
+    }
+
+    if (swapEdit % 2 == 1) {
+      for (var i=0; i<mainProteinEdit.length; i++) {
+        mainProteinEdit[i].className = "mainproteinedit shown";
+      }
+    }
   }
 }

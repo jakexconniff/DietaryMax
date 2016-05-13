@@ -1,4 +1,5 @@
 Session.set("searchBy", "letter");
+var ticker = 0;
 // Infinite Scroll
 lastScrollTop = 0;
 $(window).scroll(function(event) {
