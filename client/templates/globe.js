@@ -1,6 +1,5 @@
 globe = {
   applyEdits: function(swapEdit) {
-    console.log(swapEdit % 2);
     termsEdit = document.getElementsByClassName("termsedit");
     liquidEdit = document.getElementsByClassName("liquidedit");
     hotBevEdit = document.getElementsByClassName("hotbevedit");
@@ -10,12 +9,8 @@ globe = {
     termsInitial = document.getElementsByClassName("restrictionsListInitial");
     termsSecondary = document.getElementsByClassName("restrictionsListSecondary");
     residentCardSize = document.getElementsByClassName("resident-card");
-    console.log(liquidEdit.length);
 
     if (swapEdit > 0) {
-      console.log(termsInitial);
-      console.log(termsSecondary);
-      console.log(swapEdit);
       for (var i=0; i<termsInitial.length; i++) {
         termsInitial[i].className = "restrictionsListInitial hidden";
       }
@@ -39,7 +34,6 @@ globe = {
         termsEdit[i].className = "termsedit hidden";
       }
       for (var i=0; i<glyphRemove.length; i++) {
-        console.log("tick" + i);
         glyphRemove[i].className = "red glyphicon glyphicon-remove hidden";
       }
       for (var i=0; i<glyphAdd.length; i++) {
@@ -64,7 +58,7 @@ globe = {
         termsEdit[i].className = "termsedit shown";
       }
       for (var i=0; i<glyphRemove.length; i++) {
-        console.log("tock" + i);
+
         glyphRemove[i].className = "red glyphicon glyphicon-remove shown";
       }
       for (var i=0; i<glyphAdd.length; i++) {

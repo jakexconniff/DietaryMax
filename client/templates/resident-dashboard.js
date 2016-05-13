@@ -51,13 +51,13 @@ $(window).scroll(function(event) {
 
     showLcs: function() {
       if (this.terms.indexOf("lcs") >= 0) {
-        temp = '<span>lcs</span> <span class="red glyphicon glyphicon-remove"></span>';
+        temp = '<span>lcs</span> <span class="red glyphicon glyphicon-remove"></span> ';
       }
       if (this.terms.indexOf("lcs") == -1) {
-        temp = "";
+        temp = " ";
 
       }
-      return temp + " ";
+      return temp;
     },
     showLcsInit: function() {
       if (this.lcs) {
@@ -244,7 +244,6 @@ $(window).scroll(function(event) {
     },
 
     'click .removelcs': function() {
-      console.log(document.getElementsByClassName("removeLcsIcon"));
       if (swapEdit % 2 == 1) {
         Meteor.call('toggleLcs', this._id, this.lcs);
       }

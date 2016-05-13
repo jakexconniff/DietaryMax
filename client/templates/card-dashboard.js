@@ -1,4 +1,5 @@
 Session.set("searchBy", "letter");
+Session.set("selectedTime", "");
 var ticker = 0;
 // Infinite Scroll
 lastScrollTop = 0;
@@ -76,7 +77,6 @@ $(window).scroll(function(event) {
 						var protein = Session.get("displayAltProtein");
 					}
 				}
-				console.log(protein);
 				return protein;
 			}
 		},
@@ -106,6 +106,17 @@ $(window).scroll(function(event) {
 				}
 			}
 			return veg;
+		},
+
+		displayMealSelect: function() {
+			select = Session.get("selectedTime");
+			console.log(select);
+			if (select == "") {
+				return "Meal Select";
+			}
+			else {
+				return select;
+			}
 		},
 
 		outputStarch: function() {
@@ -164,6 +175,7 @@ $(window).scroll(function(event) {
 
 			selectedTime = event.target.text;
 			selectedTimeArray = selectedTime.split(' ');
+			Session.set('selectedTime', selectedTime);
 			Session.set('targetDay', selectedTimeArray[0]);
 			Session.set('targetTime', selectedTimeArray[1]);
 			// End rip, start applying to database.
