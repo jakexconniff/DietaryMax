@@ -36,10 +36,10 @@ Template.heading.events({
 		document.getElementById("mealListRoute").className = "";
 		document.getElementById("addCardRoute").className = "dropdown active";
 	},
-	'keyup #search': _.debounce(function(event){
+	'keydown #search': _.debounce(function(event){
 		if (event.target.value.length == 0) {
-			
-			applyEdits();
+			globe.applyEdits(globe.swapEdit);
+			Session.set("search", "");
 		}
 	Session.set("search", event.target.value);
 

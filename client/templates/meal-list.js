@@ -1,7 +1,15 @@
 	Template.mealList.helpers({
 		meal: function() {
 			Meteor.subscribe("Meals.public");
-			return MealList.find();
+			var searchParam = Session.get("search");
+      var searchQuery = new RegExp(searchParam, "i");
+			if (MealList.find({mealDay: searchQuery})) {
+				return MealList.find({mealDay: searchQuery}, { sort: { 'mealDay' : 1 }});
+			}
+			else {
+				console.log("YOLO");
+			}
+
 		},
 		restrictionsMainProtein: function() {
 			let restrictionsList = [];
@@ -35,14 +43,6 @@
 			if (this.restrictRenalVegTwo == true) restrictionsList.push("Renal");
 			return restrictionsList.join(", ");
 		},
-		restrictionsVegThree: function() {
-			let restrictionsList = [];
-			if (this.restrictLcsVegThree == true) restrictionsList.push("LCS");
-			if (this.restrictNasVegThree == true) restrictionsList.push("NAS");
-			if (this.restrictLowSodiumVegThree == true) restrictionsList.push("Low Sodium");
-			if (this.restrictRenalVegThree == true) restrictionsList.push("Renal");
-			return restrictionsList.join(", ");
-		},
 		restrictionsStarchOne: function() {
 			let restrictionsList = [];
 			if (this.restrictLcsStarchOne == true) restrictionsList.push("LCS");
@@ -63,4 +63,3 @@
 			return moment(this.addedOn).format("ddd, MMMM Do YYYY (h:mma)");
 		}
 	});
-

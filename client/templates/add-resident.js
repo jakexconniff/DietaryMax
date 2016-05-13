@@ -58,6 +58,10 @@
       },
       'submit #addForm' : function () {
         event.preventDefault();
+        console.log(event.target.inputName.value);
+        console.log(event.target.inputRmNum.value);
+        console.log(Session.get('selectedTexture'));
+        console.log(Session.get('selectedThickness'));
         if (event.target.inputName.value == "" || event.target.inputRmNum.value == "" || Session.get('selectedTexture') == ""
           || Session.get('selectedThickness') == "") {
           cardSubmitText = "You have left a field blank! All fields but restrictions are required.";
@@ -72,6 +76,7 @@
         var resident = {
           name : event.target.inputName.value,
           rmNum: event.target.inputRmNum.value,
+          dislikes: event.target.inputDislikes.value,
           texture: Session.get('selectedTexture'),
           consistency : Session.get('selectedThickness'),
           lcs: event.target.lcs.checked,
@@ -80,11 +85,13 @@
           renal: event.target.renal.checked,
           hotBev: Session.get("selectedHotBev"),
           coldBev: Session.get("selectedColdBev"),
-          protein: ' ',
-          veg: ' ',
-          starch: ' ',
           terms: []
         };
+
+        if (resident.dislikes) {
+          var dislikesArray = resident.dislikes.split(" ");
+          console.log(dislikesArray);
+        }
 
         if (resident.lcs == true) {
             resident.terms.push("lcs");

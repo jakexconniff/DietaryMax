@@ -1,12 +1,10 @@
-
-
+Session.set("searchBy", "letter");
 // Infinite Scroll
 lastScrollTop = 0;
 $(window).scroll(function(event) {
 	if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
 		var scrollTop = $(this).scrollTop();
 		if (scrollTop > lastScrollTop) {
-			console.log("Wheeeee");
 			Session.set("residentLimit", Session.get("residentLimit") + 8);
 		}
 		lastScrollTop = scrollTop;
@@ -28,7 +26,15 @@ $(window).scroll(function(event) {
 		},
 		resident: function() {
 			Meteor.subscribe('Residents.all', Session.get("residentLimit"));
-			return ResidentList.find({}, {limit: Session.get("residentLimit")});
+			var searchParam = Session.get("search");
+      var searchQuery = new RegExp(searchParam, "i");
+			if (Session.get("searchBy") == "letter") {
+				return ResidentList.find({name: searchQuery}, { sort: { 'rmNum' : 1 }} ,{limit: Session.get("residentLimit")});
+			}
+			if (Session.get("searchBy") == "numeric") {
+				return ResidentList.find({rmNum: searchQuery}, { sort: { 'rmNum' : 1 }} ,{limit: Session.get("residentLimit")});
+			}
+
 		},
 		outputDay: function() {
 			return Session.get('displayDay');
@@ -44,8 +50,7 @@ $(window).scroll(function(event) {
 		},
 		outputProtein: function() {
 			let selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
-			console.log(Session.get('displayAltProtein'), Session.get('displayMainProtein'));
-			console.log(selectedMeal);
+			var protein = Session.get("displayMainProtein");
 			// dislike check here.
 			//if (this.dislikes.indexOf(displayMainProtein)) return Session.get('displayAltProtein');
 			if (selectedMeal) {
@@ -70,26 +75,71 @@ $(window).scroll(function(event) {
 						var protein = Session.get("displayAltProtein");
 					}
 				}
-				if (protein !== Session.get("displayAltProtein")) {
-					var protein = Session.get("displayMainProtein");
-				};
 				console.log(protein);
 				return protein;
 			}
 		},
 		outputVeg: function() {
 			let selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
-
-			console.log(Session.get('displayVegOne'));
-			console.log(Session.get("displayVegTwo"));
-			console.log(Session.get("displayVegThree"));
-			console.log(selectedMeal);
-			if (typeof veg == 'undefined') {
-				console.log("Bananas");
-				veg = "Bananas";
+			var veg = Session.get("displayVegOne");
+			if (selectedMeal) {
+				if (selectedMeal.restrictLcsVegOne) {
+					if (this.lcs) {
+						var veg = Session.get("displayVegTwo");
+					}
+				}
+				if (selectedMeal.restrictNasVegOne) {
+					if (this.nas) {
+						var veg = Session.get("displayVegTwo");
+					}
+				}
+				if (selectedMeal.restrictLowSodiumVegOne) {
+					if (this.lowSodium) {
+						var veg = Session.get("displayVegTwo");
+					}
+				}
+				if (selectedMeal.restrictRenalVegOne) {
+					if (this.renal) {
+						var veg = Session.get("displayVegTwo");
+					}
+				}
 			}
-			console.log(veg);
 			return veg;
+		},
+
+		outputStarch: function() {
+			let selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
+			var starch = Session.get("displayStarchOne");
+			if (selectedMeal) {
+				if (selectedMeal.restrictLcsVegOne) {
+					if (this.lcs) {
+						var starch = Session.get("displayStarchTwo");
+					}
+				}
+				if (selectedMeal.restrictNasVegOne) {
+					if (this.nas) {
+						var starch = Session.get("displayStarchTwo");
+					}
+				}
+				if (selectedMeal.restrictLowSodiumVegOne) {
+					if (this.lowSodium) {
+						var starch = Session.get("displayStarchTwo");
+					}
+				}
+				if (selectedMeal.restrictRenalVegOne) {
+					if (this.renal) {
+						var starch = Session.get("displayStarchTwo");
+					}
+				}
+			}
+			return starch;
+		},
+		itemCheck: function(item, term, restriction, selectedMeal){
+
+		},
+
+		isRenal: function(){
+
 		},
 
 		terms: function() {
@@ -99,7 +149,11 @@ $(window).scroll(function(event) {
 	});
 
 	Template.cardDashboard.events({
-		'click .dropdownValue' : function() {
+		'click #printCards': function() {
+			window.print();
+		},
+
+		'click .dropdownValue': function() {
 			//console.log(MealList.findOne({'id':"meal1"}).mainProtein);
 			//console.log(ResidentList.findOne({'id': "resident1"}));
 			//console.log(event.target.text);
@@ -119,7 +173,8 @@ $(window).scroll(function(event) {
 			outputAltProtein = selectedMeal.altProtein;
 			outputVegOne = selectedMeal.vegOne;
 			outputVegTwo = selectedMeal.vegTwo;
-			outputVegThree = selectedMeal.vegThree;
+			outputStarchOne = selectedMeal.starchOne;
+			outputStarchTwo = selectedMeal.starchTwo;
 
 			Session.set('displayTime',outputTime);
 			Session.set('displayDay',outputDay);
@@ -127,7 +182,8 @@ $(window).scroll(function(event) {
 			Session.set('displayAltProtein', outputAltProtein);
 			Session.set('displayVegOne', outputVegOne);
 			Session.set('displayVegTwo', outputVegTwo);
-			Session.set('displayVegThree', outputVegThree);
+			Session.set('displayStarchOne', outputStarchOne);
+			Session.set('displayStarchTwo', outputStarchTwo);
 
 			console.log(Session.get('displayVegOne'));
 		}

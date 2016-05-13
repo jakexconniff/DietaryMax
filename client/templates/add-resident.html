@@ -1,21 +1,28 @@
 <template name="addResident">
+	<div class="container-fluid">
 	<form class="form-horizontal add-resident-form col-xs-6 col-xs-offset-3" id="addForm">
 		<h2 class="text-center">Input a Resident</h2>
 		<hr>
 		<div class="form-group">
-			<label for="inputName" class="col-sm-2 control-label">Name</label> 
+			<label for="inputName" class="col-sm-2 control-label">Name (*)</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="inputName" placeholder="Robert Stark">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputRmNum" class="col-sm-2 control-label">Room Number</label> 
+			<label for="inputRmNum" class="col-sm-2 control-label">Room Number (*)</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="inputRmNum" placeholder="904" value="">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputTexture" class="col-sm-2 control-label">Texture</label> 
+			<label for="inputDislikes" class="col-sm-2 control-label">Dislikes</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="inputDislikes" placeholder="chicken ranch noodles" value="">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputTexture" class="col-sm-2 control-label">Texture (*)</label>
 			<div class="col-sm-10">
 				<label class="radio-inline">
 					<input type="radio" name="texture" id="regularRadio" value="regular">Regular
@@ -46,7 +53,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputThickness" class="col-sm-2 control-label">Beverage Thickness</label> 
+			<label for="inputThickness" class="col-sm-2 control-label">Beverage Thickness (*)</label>
 			<div class="col-sm-10">
 				<label class="radio-inline">
 					<input type="radio" name="thickness" id="thinRadio" value="thin">Thin
@@ -60,7 +67,7 @@
 			</div>
 		</div>
 		<div class="form-group" >
-			<label for="inputThickness" class="col-sm-2 control-label" id="hotBevChoice">Hot Beverage Choice</label> 
+			<label for="inputThickness" class="col-sm-2 control-label" id="hotBevChoice">Hot Beverage Choice (*)</label>
 			<div class="col-sm-10">
 				<label class="radio-inline">
 					<input type="radio" name="hotBev" id="coffeeRadio" value="coffee">Coffee
@@ -77,7 +84,7 @@
 			</div>
 		</div>
 		<div class="form-group" >
-			<label for="inputThickness" class="col-sm-2 control-label" id="coldBevChoice">Cold Beverage Choice</label> 
+			<label for="inputThickness" class="col-sm-2 control-label" id="coldBevChoice">Cold Beverage Choice (*)</label>
 			<div class="col-sm-10">
 				<label class="radio-inline">
 					<input type="radio" name="coldBev" id="appleJuiceRadio" value="apple juice">Apple Juice
@@ -107,9 +114,7 @@
 				<span id="cardSubmitResults"> </span> <hr>
 			</div>
 		</div>
-
-				<button type="submit" class="btn btn-primary col-xs-offset-5" id="addButton" value="Add Resident!">Add Resident!</button><br><br><br>
-
+			<button type="submit" class="btn btn-lg col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4" id="addButton" value="Add Resident!">Add Resident!</button><br><br><br>
 	</form>
-
+</div>
 </template>

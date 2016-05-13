@@ -1,9 +1,49 @@
 .card-dashboard {
-	top: 54px;
+	top: 146px;
+}
+
+.dash-select {
+	position: fixed;
+	height: 86px;
+	background-color: #334866;
+	top: 50px;
+		z-index: 100;
+}
+
+
+
+.dash-select-buttons {
+	margin-top: 20px;
 }
 
 .card-pane {
 	border-radius: 25px;
 	background-color: white;
 	margin-bottom: 4px;
+	margin-bottom: 12px;
+}
+
+
+@media print {
+    .no-print, .no-print * {
+        display: none !important;
+    }
+
+		.card-print {
+			height: 3in;
+		}
+}
+
+@media only screen and (max-device-width: 9999px) {
+
+	.resident-print {
+		display: none !important;
+		background-color: blue !important;
+	}
+
+
+
+	.print-only, .print-only * {
+
+	}
 }

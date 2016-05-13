@@ -1,23 +1,24 @@
 .resident-card {
 	border-radius: 25px;
-	top: 58px;
-	background-color: white;
-	margin-bottom: 4px;
+	top: 146px;
+	background-color: #F8F8F8;
+	margin-bottom: 12px;
 }
 
-.dash-select {
-	top: 50px;
-	font-size: 2rem;
-	margin: 2px;
+.big-box {
+	min-height: 380px;
 }
+.small-box {
+	min-height: 260px;
+}
+
+.resident-card-content {
+	background-color: #F8F8F8;
+}
+
 
 .select-menu {
 	border-radius: 25px;
-}
-
-.restopp {
-	font-size: 30px;
-	display: inline;
 }
 
 .hidden {
@@ -28,7 +29,45 @@
 	opacity: 100;
 }
 
+.edit-resident-panel {
+	position: fixed;
+	top: 50px;
+	background-color: #334866;
+	z-index: 5;
+	height: 86px;
+}
+
 .edit-resident-button {
-	position: relative;
-	top: 54px;
+	margin-top: 20px;
+	background-color: #F8F8F8;
+	color: #CC1802;
+}
+
+.edit-resident-button:link {
+	color: #CC1802;
+}
+
+.edit-resident-button:visited {
+	color: #CC1802;
+}
+
+.edit-resident-button:hover {
+	color: #CC1802;
+}
+
+.edit-resident-button:focus {
+	color: #CC1802;
+}
+
+.edit-resident-button:active {
+	color: #CC1802;
+}
+
+
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
 }

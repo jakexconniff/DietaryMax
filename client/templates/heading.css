@@ -1,9 +1,9 @@
-.top-nav {
+.top-navbar {
 	position: fixed;
-	background-color: blue;
+	background-color: #FSFFFF;
 	height: 50px;
 }
 
-.nav-item {
-	font-size: 3rem;
+.add-dropdown {
+	z-index: 9999;
 }

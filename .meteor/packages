@@ -22,3 +22,4 @@ iron:router
 twbs:bootstrap
 reactive-var
 mrt:moment
+fortawesome:fontawesome

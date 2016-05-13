@@ -20,8 +20,11 @@ Template.addMeal.events({
 	'click #mealSubmit' : function(event, template) {
 		template.showAddMeal.set(false);
 	},
+	'click #addMealTime': function() {
+		console.log(document.getElementById("addMealTime"));
+	},
 	'click #breakfast' : function() {
-		console.log(document.getElementById("lunch").checked);
+		console.log(event.target.id);
 		Session.set('mealTime', "Breakfast");
 	},
 	'click #lunch' : function() {
@@ -64,9 +67,9 @@ Template.addMeal.events({
 			document.getElementById("submitResults").innerHTML = submitText;
 			if (event.target.restrictLcsMainProtein.checked)console.log(event.target.restrictLcsMainProtein.checked);
 		}
-		else if (Session.get('mealTime') == "" || Session.get('mealDay') == "" || event.target.mainProtein.value == "" 
-			|| event.target.altProtein.value == "" || event.target.vegOne.value == "" || event.target.vegTwo.value == "" 
-			|| event.target.vegThree.value == "" || event.target.starchOne.vaue == "" || event.target.starchTwo.value == "" ) {
+		else if (Session.get('mealTime') == "" || Session.get('mealDay') == "" || event.target.mainProtein.value == ""
+			|| event.target.altProtein.value == "" || event.target.vegOne.value == "" || event.target.vegTwo.value == ""
+			|| event.target.starchOne.vaue == "" || event.target.starchTwo.value == "" ) {
 			submitText = "You left a field blank!";
 			document.getElementById("submitResults").innerHTML = submitText;
 			console.log(MealList.find().count());
@@ -84,7 +87,7 @@ Template.addMeal.events({
 				altProtein: event.target.altProtein.value,
 				vegOne: event.target.vegOne.value,
 				vegTwo: event.target.vegTwo.value,
-				vegThree: event.target.vegThree.value,
+				//vegThree: event.target.vegThree.value,
 				starchOne: event.target.starchOne.value,
 				starchTwo: event.target.starchTwo.value,
 
@@ -108,11 +111,6 @@ Template.addMeal.events({
 				restrictLowSodiumVegTwo: event.target.restrictLowSodiumVegTwo.checked,
 				restrictRenalVegTwo: event.target.restrictRenalVegTwo.checked,
 
-				restrictLcsVegThree: event.target.restrictLcsVegThree.checked,
-				restrictNasVegThree: event.target.restrictNasVegThree.checked,
-				restrictLowSodiumVegThree: event.target.restrictLowSodiumVegThree.checked,
-				restrictRenalVegThree: event.target.restrictRenalVegThree.checked,
-
 				restrictLcsStarchOne: event.target.restrictLcsStarchOne.checked,
 				restrictNasStarchOne: event.target.restrictNasStarchOne.checked,
 				restrictLowSodiumStarchOne: event.target.restrictLowSodiumStarchOne.checked,
@@ -132,4 +130,4 @@ Template.addMeal.events({
 
 //  if mainProtein.lcs == lcs and this.target.lcs == lcs, return {{altProtein}}
 
-// {{#if mainProtein.canHave}} {{mainProtein}} {{/if}}, {{#else if altProtein.canHave}} {{altProtein}} {{/if}} 
+// {{#if mainProtein.canHave}} {{mainProtein}} {{/if}}, {{#else if altProtein.canHave}} {{altProtein}} {{/if}}

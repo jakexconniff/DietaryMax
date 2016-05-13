@@ -1,46 +1,97 @@
 <template name="residentDashboard">
-	<div class="container-fluid edit-resident-button">
-		<button class="btn btn-large col-xs-6 col-xs-offset-3 col-md-2 col-md-offset-5" id="toggleEditSpan">Edit Residents</button>
+	<div class="container-fluid edit-resident-panel col-xs-12">
+		<button class="btn btn-lg col-xs-6 col-xs-offset-3 col-md-2 col-md-offset-5 edit-resident-button" id="toggleEditSpan">
+			Edit Residents <span class="glyphicon glyphicon-pencil"></span></button>
 	</div>
 	{{#each resident}}
-	<div class="resident-card col-xs-12 col-md-6 col-md-offset-3" id={{cardId}}>
-		<h2>{{name}}({{rmNum}}) - {{texture}}<span class="glyphicon glyphicon-remove hidden" id="removeResident"></span></h2>
-		<div class="terms" id="terms">
-			<p><strong>Restrictions</strong>:
-				<span id="removeLcs">{{showLcs}}</span>
-				<span id="removeNas">{{showNas}}</span>
-				<span id="removeLowSodium">{{showLowSodium}}</span>
-				<span id="removeRenal">{{showRenal}}</span>
-			</p>
-		</div>
-		<div class="termsedit hidden" id="editToggle">
-			<p><strong>Add a Restriction!</strong>:
-				<span id="addLcs">{{addLcs}}</span>
-				<span id="addNas">{{addNas}}</span>
-				<span id="addLowSodium">{{addLowSodium}}</span>
-				<span id="addRenal">{{addRenal}}</span>
-			</p>
-		</div>
-		<div class="liquid-consistency">
-			<p><strong>Liquid Consistency</strong>: {{consistency}}</p>
-		</div>
-		<div class="termsedit hidden" id="editLiquidToggle">
-			<div class="btn-group">
-			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Edit Liquid Consistency <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu">
-				    <li class="liquidDropdown" id="thinSelect"><a href="#">Thin</a></li>
-					  <li class="liquidDropdown" id="nectarSelect"><a href="#">Nectar</a></li>
-						<li class="liquidDropdown" id="honeySelect"><a href="#">Honey</a></li>
-			  </ul>
+	<div class="container-fluid">
+		<div class="resident-card small-box col-xs-12 col-md-6 col-md-offset-3" id={{cardId}}>
+			<div class="resident-card-content">
+				<h2>{{name}}({{rmNum}}) - {{texture}}<span class="pull-right"><span class="glyphicon glyphicon-remove hidden" id="removeResident"></span></span></h2>
+				<div class="terms" id="terms">
+					<p class="restrictionsListSecondary hidden"><strong>Restrictions</strong>:
+						<span class="removelcs">{{{showLcs}}}<span class="removeLcsIcon"></span></span>
+						<span id="removeNas">{{{showNas}}}</span>
+						<span id="removeLowSodium">{{{showLowSodium}}}</span>
+						<span id="removeRenal">{{{showRenal}}}</span>
+					</p>
+					<p class="restrictionsListInitial shown"><strong>Restrictions</strong>:
+						<span class="removelcs">{{showLcsInit}}<span class="removeLcsIcon"></span></span>
+						<span id="removeNas">{{showNasInit}}</span>
+						<span id="removeLowSodium">{{showLowSodiumInit}}</span>
+						<span id="removeRenal">{{showRenalInit}}</span>
+					</p>
+				</div>
+				<div class="termsedit hidden" id="editToggle">
+					<p><strong>Add a Restriction!</strong>:
+						<span id="addLcs">{{{addLcs}}}</span>
+						<span id="addNas">{{{addNas}}}</span>
+						<span id="addLowSodium">{{{addLowSodium}}}</span>
+						<span id="addRenal">{{{addRenal}}}</span>
+					</p>
+				</div>
+				<div class="dislikes" id="dislikes">
+					<p><strong>Dislikes</strong>:
+						{{displayDislikes}}
+					</p>
+				</div>
+				<div class="liquid-consistency">
+					<p><strong>Liquid Consistency</strong>: {{consistency}}</p>
+				</div>
+				<div class="liquidedit hidden" id="editLiquidToggle">
+					<div class="btn-group">
+					  <button type="button" class="btn btn-default dropdown-toggle liquid" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    Edit Liquid Consistency <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu">
+						    <li class="liquidDropdown" id="thinSelect"><a href="#">Thin</a></li>
+							  <li class="liquidDropdown" id="nectarSelect"><a href="#">Nectar</a></li>
+								<li class="liquidDropdown" id="honeySelect"><a href="#">Honey</a></li>
+					  </ul>
+					</div>
+				</div>
+				<p><strong>Hot Beverage</strong>: {{hotBev}}</p>
+				<div class="hotbevedit hidden" id="editHotBevToggle">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle hotbev" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Edit Hot Beverage <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+								<li class="hotBevDropdown" id="coffeeSelect"><a href="#">Coffee</a></li>
+								<li class="hotBevDropdown" id="teaSelect"><a href="#">Tea</a></li>
+								<li class="hotBevDropdown" id="hotCocoaSelect"><a href="#">Hot Cocoa</a></li>
+						</ul>
+					</div>
+				</div>
+				<p><strong>Cold Beverage</strong>: {{coldBev}}</p>
+				<div class="coldbevedit hidden" id="editColdBevToggle">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle coldbev" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Edit Cold Beverage <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+								<li class="coldBevDropdown" id="appleJuiceSelect"><a href="#">Apple Juice</a></li>
+								<li class="coldBevDropdown" id="orangeJuiceSelect"><a href="#">Orange Juice</a></li>
+								<li class="coldBevDropdown" id="cranberryJuiceSelect"><a href="#">Cranberry Juice</a></li>
+								<li class="coldBevDropdown" id="gingerAleSelect"><a href="#">Ginger Ale</a></li>
+								<li class="coldBevDropdown" id="colaSelect"><a href="#">Cola</a></li>
+								<li class="coldBevDropdown" id="noColdSelect"><a href="#">None</a></li>
+						</ul>
+					</div>
+
+				</div>
 			</div>
 		</div>
-		<div class="consistency hidden" id="consistencyToggle">
-			<p>skdjfkjdsfjk</p>
-		</div>
-		<p><strong>Hot Beverage</strong>: {{hotBev}}</p>
-		<p><strong>Cold Beverage</strong>: {{coldBev}}</p>
 	</div>
 	{{/each}}
+</template>
+
+<template name="glyphRemoveHidden">
+	<span class="glyphicon glyphicon-remove hidden"></span>
+</template>
+<template name="glyphAddHidden">
+	<span class="glyphicon glyphicon-plus hidden"></span>
+</template>
+<template name="glyphAddShown">
+	<span class="glyphicon glyphicon-plus shown"></span>
 </template>

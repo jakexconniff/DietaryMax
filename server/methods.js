@@ -5,17 +5,35 @@ Meteor.methods({
     'removeResident': function(resident){
         ResidentList.remove(resident);
     },
+    'refresh': function(id) {
+      ResidentList.find({_id: id});
+    },
+
     'createMeal': function(meal){
     	console.log(meal);
 
     	MealList.insert(meal);
     },
+    'editConsistency': function(id, newConsistency) {
+    console.log({_id: id});
+    console.log(newConsistency);
+      ResidentList.update({_id: id}, {$set: {consistency: newConsistency}});
+    },
+
+    'editHotBev': function(id, newHotBev) {
+      ResidentList.update({_id: id}, {$set: {hotBev: newHotBev}});
+    },
+
+    'editColdBev': function(id, newColdBev) {
+      ResidentList.update({_id: id}, {$set: {coldBev: newColdBev}});
+    },
+
     'toggleLcs': function(id, lcs) {
       if (lcs == false) {
     	   ResidentList.update({_id: id}, {$push: {terms: "lcs"}});
          ResidentList.update({_id: id}, {$set: {lcs: true}});
       }
-      else if(lcs == true) {
+      else {
         ResidentList.update({_id: id}, {$pull: {terms: "lcs"}});
         ResidentList.update({_id: id}, {$set: {lcs: false}});
       }
