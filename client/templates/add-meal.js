@@ -141,6 +141,7 @@ Template.addMeal.events({
 		console.log(meal);
 		Meteor.call('createMeal', meal);
 
+		document.getElementById("addMealForm").reset();
 		Session.set("mealTime", "");
 		Session.set("mealDay", "");
 		}

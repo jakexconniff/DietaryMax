@@ -68,7 +68,7 @@
         Session.set('selectedHotBev', 'Hot Cocoa');
       },
       'click #noHotBev' : function () {
-        Session.set('selectedHotBev', '');
+        Session.set('selectedHotBev', 'none');
       },
       'click #orangeJuiceColdBev' : function () {
         Session.set('selectedColdBev', 'Orange Juice');
@@ -86,7 +86,7 @@
         Session.set('selectedColdBev', 'Cola');
       },
       'click #noColdBev' : function () {
-        Session.set('selectedColdBev', '');
+        Session.set('selectedColdBev', 'none');
       },
       'submit #addForm' : function () {
         event.preventDefault();
@@ -146,6 +146,8 @@
       Session.set('selectedNas', false);
       Session.set('selectedLowSodium', false);
       Session.set('selectedRenal', false);
+      Session.set('selectedHotBev', "Select a Hot Beverage!");
+      Session.set('selectedColdBev', "Select a Cold Beverage!");
 
         document.getElementById("addForm").reset();
       }
