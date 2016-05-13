@@ -12,6 +12,7 @@ Template.heading.events({
 		document.getElementById("mealListRoute").className = "";
 		document.getElementById("addCardRoute").className = "dropdown";
 		Session.set("residentLimit", 8);
+		Session.set("mealTime", "");
 
 	},
 	'click #cardRoute' : function() {
@@ -21,6 +22,7 @@ Template.heading.events({
 		document.getElementById("mealListRoute").className = "";
 		document.getElementById("addCardRoute").className = "dropdown";
 		Session.set("residentLimit", 8);
+		Session.set("mealTime", "");
 	},
 	'click #mealListRoute' : function() {
 		window.scrollTo(0,0);
@@ -29,12 +31,14 @@ Template.heading.events({
 		document.getElementById("mealListRoute").className = "active";
 		document.getElementById("addCardRoute").className = "dropdown";
 		Session.set("residentLimit", 8);
+		Session.set("mealTime", "");
 	},
 	'click #addDropdown' : function() {
 		document.getElementById("residentRoute").className = "";
 		document.getElementById("cardRoute").className = "";
 		document.getElementById("mealListRoute").className = "";
 		document.getElementById("addCardRoute").className = "dropdown active";
+		Session.set("mealTime", "");
 	},
 	'keydown #search': _.debounce(function(event){
 		if (event.target.value.length == 0) {

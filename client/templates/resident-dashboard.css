@@ -16,6 +16,17 @@
 	background-color: #F8F8F8;
 }
 
+.liquidedit {
+	padding-bottom: 10px;
+}
+
+.hotbevedit {
+	padding-bottom: 10px;
+}
+
+.coldbevedit {
+	padding-bottom: 10px;
+}
 
 .select-menu {
 	border-radius: 25px;

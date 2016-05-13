@@ -4,56 +4,88 @@
     Template.addResident.helpers({
       cardSubmitResults : function() {
         return cardSubmitText;
-      }
+      },
+      displayMealTexture: function() {
+        if (Session.get("selectedTexture")) {
+          return Session.get("selectedTexture");
+        }
+        else {
+          return "Select a Texture!";
+        }
+      },
+      displayLiquidThickness: function() {
+        if (Session.get("selectedThickness")) {
+          return Session.get("selectedThickness");
+        }
+        else {
+          return "Select a Thickness!";
+        }
+      },
+      displayHotBev: function() {
+        if (Session.get("selectedHotBev")) {
+          return Session.get("selectedHotBev");
+        }
+        else {
+          return "Select a Hot Beverage!";
+        }
+      },
+      displayColdBev: function() {
+        if (Session.get("selectedColdBev")) {
+          return Session.get("selectedColdBev");
+        }
+        else {
+          return "Select a Cold  Beverage!";
+        }
+      },
     });
 
     Template.addResident.events({
-      'click #regularRadio' : function () {
+      'click #regularTexture' : function () {
         Session.set('selectedTexture', 'Regular ');
       },
-      'click #groundRadio' : function () {
+      'click #groundTexture' : function () {
         Session.set('selectedTexture', 'Ground ');
       },
-      'click #pureeRadio' : function () {
+      'click #pureeTexture' : function () {
         Session.set('selectedTexture', 'Puree ');
       },
-      'click #thinRadio' : function () {
+      'click #thinThickness' : function () {
         Session.set('selectedThickness', 'Thin ');
       },
-      'click #nectarRadio' : function () {
+      'click #nectarThickness' : function () {
         Session.set('selectedThickness', 'Nectar ');
       },
-      'click #honeyRadio' : function () {
+      'click #honeyThickness' : function () {
         Session.set('selectedThickness', 'Honey ');
       },
-      'click #coffeeRadio' : function () {
+      'click #coffeeHotBev' : function () {
         Session.set('selectedHotBev', 'Coffee');
       },
-      'click #teaRadio' : function () {
+      'click #teaHotBev' : function () {
         Session.set('selectedHotBev', 'Tea');
       },
-      'click #hotCocoaRadio' : function () {
+      'click #hotCocoaHotBev' : function () {
         Session.set('selectedHotBev', 'Hot Cocoa');
       },
-      'click #noHotBevRadio' : function () {
+      'click #noHotBev' : function () {
         Session.set('selectedHotBev', '');
       },
-      'click #orangeJuiceRadio' : function () {
+      'click #orangeJuiceColdBev' : function () {
         Session.set('selectedColdBev', 'Orange Juice');
       },
-      'click #appleJuiceRadio' : function () {
+      'click #appleJuiceColdBev' : function () {
         Session.set('selectedColdBev', 'Apple Juice');
       },
-      'click #cranberryJuiceRadio' : function () {
+      'click #cranberryJuiceColdBev' : function () {
         Session.set('selectedColdBev', 'Cranberry Juice');
       },
-      'click #gingerAleRadio' : function () {
+      'click #gingerAleColdBev' : function () {
         Session.set('selectedColdBev', 'Ginger Ale');
       },
-      'click #colaRadio' : function () {
+      'click #colaColdBev' : function () {
         Session.set('selectedColdBev', 'Cola');
       },
-      'click #noColdBevRadio' : function () {
+      'click #noColdBev' : function () {
         Session.set('selectedColdBev', '');
       },
       'submit #addForm' : function () {
@@ -114,15 +146,6 @@
       Session.set('selectedNas', false);
       Session.set('selectedLowSodium', false);
       Session.set('selectedRenal', false);
-        /*document.getElementById("inputName") = "";
-        document.getElementById("inputRmNum") = "";
-        document.getElementById("lcs").checked = false;
-        document.getElementById("nas").checked = false;
-        document.getElementById("lowSodium").checked = false;
-        document.getElementById("renal").checked = false;
-        document.getElementById("regularRadio").checked = false;
-        document.getElementById("groundRadio").checked = false;
-        document.getElementById("pureeRadio").checked = false;*/
 
         document.getElementById("addForm").reset();
       }

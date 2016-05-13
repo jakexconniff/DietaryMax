@@ -32,6 +32,14 @@
 		.card-print {
 			height: 3in;
 		}
+
+
+}
+
+@page{
+	size:auto;
+	margin-bottom:5mm;
+	margin-top:5mm;
 }
 
 @media only screen and (max-device-width: 9999px) {

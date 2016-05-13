@@ -9,6 +9,7 @@ globe = {
     glyphAdd = document.getElementsByClassName("glyphicon-plus");
     termsInitial = document.getElementsByClassName("restrictionsListInitial");
     termsSecondary = document.getElementsByClassName("restrictionsListSecondary");
+    residentCardSize = document.getElementsByClassName("resident-card");
     console.log(liquidEdit.length);
 
     if (swapEdit > 0) {
@@ -24,6 +25,10 @@ globe = {
     }
 
     if (swapEdit % 2 == 0) {
+      for (var i=0; i<residentCardSize.length; i++) {
+        residentCardSize[i].className = "resident-card small-box col-xs-12 col-md-6 col-md-offset-3";
+      }
+
       for (var i=0; i<hotBevEdit.length; i++) {
         hotBevEdit[i].className = "hotbevedit hidden";
       }
@@ -45,6 +50,10 @@ globe = {
       }
     }
     if (swapEdit % 2 == 1) {
+      for (var i=0; i<residentCardSize.length; i++) {
+        residentCardSize[i].className = "resident-card big-box col-xs-12 col-md-6 col-md-offset-3";
+      }
+
       for (var i=0; i<hotBevEdit.length; i++) {
         hotBevEdit[i].className = "hotbevedit shown";
       }

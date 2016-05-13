@@ -10,6 +10,23 @@ Template.addMeal.helpers({
 	},
 	submitResult: function() {
 		return submitText;
+	},
+	displayMealTime: function() {
+		console.log(Session.get("mealTime"));
+		if (Session.get("mealTime")) {
+			return Session.get("mealTime");
+		}
+		else {
+			return "Select a Meal!";
+		}
+	},
+	displayMealDay: function() {
+		if (Session.get("mealDay")) {
+			return Session.get("mealDay");
+		}
+		else {
+			return "Select a Day!";
+		}
 	}
 });
 
@@ -123,6 +140,9 @@ Template.addMeal.events({
 			};
 		console.log(meal);
 		Meteor.call('createMeal', meal);
+
+		Session.set("mealTime", "");
+		Session.set("mealDay", "");
 		}
 	}
 });

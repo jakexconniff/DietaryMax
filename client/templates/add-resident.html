@@ -4,40 +4,26 @@
 		<h2 class="text-center">Input a Resident</h2>
 		<hr>
 		<div class="form-group">
-			<label for="inputName" class="col-sm-2 control-label">Name (*)</label>
+			<label for="inputName" class="col-sm-3 control-label">Name (*)</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="inputName" placeholder="Robert Stark">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputRmNum" class="col-sm-2 control-label">Room Number (*)</label>
+			<label for="inputRmNum" class="col-sm-3 control-label">Room Number (*)</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="inputRmNum" placeholder="904" value="">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputDislikes" class="col-sm-2 control-label">Dislikes</label>
+			<label for="inputDislikes" class="col-sm-3 control-label">Dislikes</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="inputDislikes" placeholder="chicken ranch noodles" value="">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputTexture" class="col-sm-2 control-label">Texture (*)</label>
-			<div class="col-sm-10">
-				<label class="radio-inline">
-					<input type="radio" name="texture" id="regularRadio" value="regular">Regular
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="texture" id="groundRadio" value="ground">Ground
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="texture" id="pureeRadio" value="puree">Puree
-				</label>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputRestrictions" class="col-sm-2 control-label">Dietary Restrictions</label>
-			<div class="col-sm-10">
+			<label for="inputRestrictions" class="col-sm-3 control-label">Dietary Restrictions</label>
+			<div class="col-sm-9">
 				<label class="checkbox-inline">
 					<input type="checkbox" id="lcs" value="lcs">Lcs
 				</label>
@@ -53,61 +39,79 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputThickness" class="col-sm-2 control-label">Beverage Thickness (*)</label>
-			<div class="col-sm-10">
-				<label class="radio-inline">
-					<input type="radio" name="thickness" id="thinRadio" value="thin">Thin
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="thickness" id="nectarRadio" value="nectar">Nectar
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="thickness" id="honeyRadio" value="honey">Honey
-				</label>
-			</div>
-		</div>
-		<div class="form-group" >
-			<label for="inputThickness" class="col-sm-2 control-label" id="hotBevChoice">Hot Beverage Choice (*)</label>
-			<div class="col-sm-10">
-				<label class="radio-inline">
-					<input type="radio" name="hotBev" id="coffeeRadio" value="coffee">Coffee
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="hotBev" id="coffeeRadio" value="tea">Tea
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="hotBev" id="hotCocoaRadio" value="Hot Cocoa">Hot Cocoa
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="hotBev" id="noHotBevRadio" value="none">None
-				</label>
-			</div>
-		</div>
-		<div class="form-group" >
-			<label for="inputThickness" class="col-sm-2 control-label" id="coldBevChoice">Cold Beverage Choice (*)</label>
-			<div class="col-sm-10">
-				<label class="radio-inline">
-					<input type="radio" name="coldBev" id="appleJuiceRadio" value="apple juice">Apple Juice
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="coldBev" id="orangeJuiceRadio" value="orange juice">Orange Juice
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="coldBev" id="cranberryJuiceRadio" value="cranberry juice">Cranberry Juice
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="coldBev" id="gingerAleRadio" value="ginger ale">Ginger Ale
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="coldBev" id="colaRadio" value="cola">Cola
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="coldBev" id="noColdBevRadio" value="none">None
-				</label>
+			<label for="addMealTexture" class="col-sm-3 control-label">Texture</label>
+			<div class="col-sm-9">
+				<button type="button" id="addMealTexture" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{{displayMealTexture}} <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li class="dropdownValue"><a href="#" id="regularTexture" value="regular">Regular</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="groundTexture" value="ground">Ground</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="pureeTexture" value="puree">Puree</a></li>
+					<li role="separator" class="divider"></li>
+				</ul>
 			</div>
 		</div>
 		<div class="form-group">
-			<div class="col-sm-2">
+			<label for="displayLiquidThickness" class="col-sm-3 control-label">Thickness</label>
+			<div class="col-sm-9">
+				<button type="button" id="addLiquidThickness" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{{displayLiquidThickness}} <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li class="dropdownValue"><a href="#" id="thinThickness" value="thin">Thin</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="nectarThickness" value="nectar">Nectar</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="honeyThickness" value="honey">Honey</a></li>
+					<li role="separator" class="divider"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="displayHotBev" class="col-sm-3 control-label">Hot Beverage</label>
+			<div class="col-sm-9">
+				<button type="button" id="addHotBev" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{{displayHotBev}} <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li class="dropdownValue"><a href="#" id="coffeeHotBev" value="coffee">Coffee</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="teaHotBev" value="tea">Tea</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="hotCocoaHotBev" value="hot cocoa">Hot Cocoa</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="noHotBev" value="none">None</a></li>
+					<li role="separator" class="divider"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="displayColdBev" class="col-sm-3 control-label">Cold Beverage</label>
+			<div class="col-sm-9">
+				<button type="button" id="addHotBev" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{{displayColdBev}} <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li class="dropdownValue"><a href="#" id="orangeJuiceColdBev" value="orange juice">Orange Juice</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="appleJuiceColdBev" value="apple juice">Apple Juice</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="cranberryJuiceColdBev" value="cranberry juice">Cranberry Juice</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="gingerAleColdBev" value="ginger ale">Ginger Ale</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="colaColdBev" value="cola">Cola</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdownValue"><a href="#" id="noColdBev" value="none">None</a></li>
+					<li role="separator" class="divider"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-3">
 			</div>
 			<div class="submit-results text-center col-xs-12">
 				<span id="cardSubmitIcon"> </span>
