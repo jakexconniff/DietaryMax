@@ -22,7 +22,9 @@ $(window).scroll(function(event) {
     resident : function() {
       Meteor.subscribe('Residents.public');
       var searchParam = Session.get("search");
-      var searchQuery = new RegExp(searchParam, "i");
+      //var searchQuery = new RegExp(searchParam, "i");
+      var searchQuery = new RegExp('^' + searchParam, "i");
+      console.log()
       if (Session.get("searchBy") == "numeric") {
         var residents = ResidentList.find({rmNum: searchQuery}, { sort: { 'rmNum' : 1 }},
         {limit: Session.get("residentLimit")});
@@ -158,55 +160,6 @@ $(window).scroll(function(event) {
       }
       return temp + " ";
     },
-
-    /*toggleAddGlyph: function(term) {
-        if (term == "lcs") {
-          if (!this.lcs)
-            return "glyphicon glyphicon-plus shown";
-        }
-        else if (term == "nas") {
-          if (!this.nas)
-            return "glyphicon glyphicon-plus shown";
-        }
-        else if (term == "low sodium") {
-          if (!this.lowSodium)
-            return "glyphicon glyphicon-plus shown";
-        }
-        else if (term == "renal") {
-          if (!this.renal)
-            return "glyphicon glyphicon-plus shown";
-        }
-        else {
-          return "glyphicon glyphicon-plus hidden";
-        }
-    },
-
-    toggleRemoveGlyph: function(term) {
-      var glyph = "glyphicon glyphicon-remove hidden";
-          if (term == "lcs") {
-            if (this.lcs) {
-              glyph = "glyphicon glyphicon-remove shown";
-            }
-            else return "";
-          }
-          if (term == "nas") {
-            if (this.nas == true) {
-              glyph ="glyphicon glyphicon-remove shown";
-            }
-          }
-          if (term == "low sodium") {
-            if (this.lowSodium == true) {
-              glyph = "glyphicon glyphicon-remove shown";
-            }
-          }
-          if (term == "renal") {
-            if (this.renal == true) {
-              glyph = "glyphicon glyphicon-remove shown";
-            }
-          }
-          return glyph;
-          globe.applyEdits(swapEdit);
-    }, */
   });
 
   Template.residentDashboard.events({
@@ -245,44 +198,46 @@ $(window).scroll(function(event) {
 
     'click .removelcs': function() {
       if (swapEdit % 2 == 1) {
-        Meteor.call('toggleLcs', this._id, this.lcs);
+        console.log(this._id);
+        console.log(this.lcs);
+        Meteor.call('toggleTerm', this._id, this.lcs, "lcs");
       }
     },
     'click #removeNas': function() {
       if (swapEdit % 2 == 1) {
-        Meteor.call('toggleNas', this._id, this.nas);
+        Meteor.call('toggleTerm', this._id, this.nas, "nas");
       }
     },
     'click #removeLowSodium': function() {
-      console.log("Hello!");
       if (swapEdit % 2 == 1) {
-        Meteor.call('toggleLowSodium', this._id, this.lowSodium);
+        Meteor.call('toggleTerm', this._id, this.lowSodium, "low sodium");
       }
     },
     'click #removeRenal': function() {
-      console.log("Hello World!");
       if (swapEdit % 2 == 1) {
-        Meteor.call('toggleRenal', this._id, this.renal);
+        Meteor.call('toggleTerm', this._id, this.renal, "renal");
       }
     },
 
     'click #addLcs': function() {
       console.log(document.getElementById("addLcs"));
-      Meteor.call('toggleLcs', this._id, this.lcs);
+      console.log(this._id);
+      console.log(this.lcs);
+        Meteor.call('toggleTerm', this._id, this.lcs, "lcs");
     },
 
     'click #addNas': function() {
       console.log(document.getElementById("addNas"));
-      Meteor.call('toggleNas', this._id, this.nas);
+        Meteor.call('toggleTerm', this._id, this.nas, "nas");
     },
 
     'click #addLowSodium': function() {
       console.log(document.getElementById("addLowSodium"));
-      Meteor.call('toggleLowSodium', this._id, this.lowSodium);
+        Meteor.call('toggleTerm', this._id, this.lowSodium, "low sodium");
     },
 
     'click #addRenal': function() {
       console.log(document.getElementById("addRenal"));
-      Meteor.call('toggleRenal', this._id, this.renal);
+              Meteor.call('toggleTerm', this._id, this.renal, "renal");
     },
   });
