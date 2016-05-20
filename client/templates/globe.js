@@ -1,4 +1,37 @@
 globe = {
+  removeTerm: function(resident, term, glyph, action) {
+    var status = '';
+    var temp = '';
+    if (term == "lcs") status = resident.lcs;
+    if (term == "nas") status = resident.nas;
+    if (term == "low sodium") status = resident.lowSodium;
+    if (term == "renal") status = resident.renal;
+    if (status == action) {
+      temp = '<span>' + term + '</span> <span class="' + glyph + '"></span>';
+    }
+    return temp;
+  },
+
+  toggleVis: function(target, classMod) {
+    for (var i=0; i<target.length; i++) {
+      target[i].className = classMod;
+    }
+  },
+
+  addTerm: function(resident, term, glyph) {
+    var status = '';
+    var temp = '';
+    if (term == "lcs") status = resident.lcs;
+    if (term == "nas") status = resident.nas;
+    if (term == "low sodium") status = resident.lowSodium;
+    if (term == "renal") status = resident.renal;
+    if (status == false) {
+      temp = '<span>' + term + '</span> <span class="' + glyph + '"></span>';
+    }
+    return temp;
+  },
+
+  // Make each item here, termsEdit, liquidEdit, etc, all part of the same array. Use for loop to iterate through each to reduce lines used.
   applyEdits: function(swapEdit) {
     termsEdit = document.getElementsByClassName("termsedit");
     liquidEdit = document.getElementsByClassName("liquidedit");
@@ -6,67 +39,32 @@ globe = {
     coldBevEdit = document.getElementsByClassName("coldbevedit");
     glyphRemove = document.getElementsByClassName("glyphicon-remove");
     glyphAdd = document.getElementsByClassName("glyphicon-plus");
+    residentCardSize = document.getElementsByClassName("resident-card");
     termsInitial = document.getElementsByClassName("restrictionsListInitial");
     termsSecondary = document.getElementsByClassName("restrictionsListSecondary");
-    residentCardSize = document.getElementsByClassName("resident-card");
 
     if (swapEdit > 0) {
-      for (var i=0; i<termsInitial.length; i++) {
-        termsInitial[i].className = "restrictionsListInitial hidden";
-      }
-      for (var i=0; i<termsSecondary.length; i++) {
-        termsSecondary[i].className = "restrictionsListSecondary shown";
-      }
+      globe.toggleVis(termsInitial, "restrictionsListInitial hidden rest");
+      globe.toggleVis(termsSecondary, "restrictionsListSecondary shown rest");
     }
 
     if (swapEdit % 2 == 0) {
-      for (var i=0; i<residentCardSize.length; i++) {
-        residentCardSize[i].className = "resident-card small-box col-xs-12 col-md-6 col-md-offset-3";
-      }
-
-      for (var i=0; i<hotBevEdit.length; i++) {
-        hotBevEdit[i].className = "hotbevedit hidden";
-      }
-      for (var i=0; i<coldBevEdit.length; i++) {
-        coldBevEdit[i].className = "coldbevedit hidden";
-      }
-      for (var i=0; i<termsEdit.length; i++) {
-        termsEdit[i].className = "termsedit hidden";
-      }
-      for (var i=0; i<glyphRemove.length; i++) {
-        glyphRemove[i].className = "red glyphicon glyphicon-remove hidden";
-      }
-      for (var i=0; i<glyphAdd.length; i++) {
-        glyphAdd[i].className = "green glyphicon glyphicon-plus hidden";
-      }
-      for (var i=0; i<liquidEdit.length; i++) {
-        liquidEdit[i].className = "liquidedit hidden";
-      }
+      globe.toggleVis(residentCardSize, "resident-card small-box col-xs-12 col-md-6 col-md-offset-3");
+      globe.toggleVis(hotBevEdit, "hotbevedit hidden");
+      globe.toggleVis(coldBevEdit, "coldbevedit hidden");
+      globe.toggleVis(termsEdit, "termsedit hidden rest");
+      globe.toggleVis(glyphRemove, "red glyphicon glyphicon-remove hidden");
+      globe.toggleVis(glyphAdd, "green glyphicon glyphicon-plus hidden");
+      globe.toggleVis(liquidEdit, "liquidedit hidden");
     }
     if (swapEdit % 2 == 1) {
-      for (var i=0; i<residentCardSize.length; i++) {
-        residentCardSize[i].className = "resident-card big-box col-xs-12 col-md-6 col-md-offset-3";
-      }
-
-      for (var i=0; i<hotBevEdit.length; i++) {
-        hotBevEdit[i].className = "hotbevedit shown";
-      }
-      for (var i=0; i<coldBevEdit.length; i++) {
-        coldBevEdit[i].className = "coldbevedit shown";
-      }
-      for (var i=0; i<termsEdit.length; i++) {
-        termsEdit[i].className = "termsedit shown";
-      }
-      for (var i=0; i<glyphRemove.length; i++) {
-
-        glyphRemove[i].className = "red glyphicon glyphicon-remove shown";
-      }
-      for (var i=0; i<glyphAdd.length; i++) {
-        glyphAdd[i].className = "green glyphicon glyphicon-plus shown";
-      }
-      for (var i=0; i<liquidEdit.length; i++) {
-        liquidEdit[i].className = "liquidedit shown";
-      }
+      globe.toggleVis(residentCardSize, "resident-card big-box col-xs-12 col-md-6 col-md-offset-3");
+      globe.toggleVis(hotBevEdit, "hotbevedit shown selector");
+      globe.toggleVis(coldBevEdit, "coldbevedit shown selector");
+      globe.toggleVis(termsEdit, "termsedit shown rest");
+      globe.toggleVis(glyphRemove, "red glyphicon glyphicon-remove shown");
+      globe.toggleVis(glyphAdd, "green glyphicon glyphicon-plus shown");
+      globe.toggleVis(liquidEdit, "liquidedit shown selector");
     }
 
 
@@ -75,15 +73,11 @@ globe = {
   applyMealEdits: function(swapEdit) {
     mainProteinEdit = document.getElementsByClassName("mainproteinedit");
     if (swapEdit % 2 == 0) {
-      for (var i=0; i<mainProteinEdit.length; i++) {
-        mainProteinEdit[i].className = "mainproteinedit hidden";
-      }
+      globe.toggleVis(mainProteinEdit, "mainproteinedit hidden");
     }
 
     if (swapEdit % 2 == 1) {
-      for (var i=0; i<mainProteinEdit.length; i++) {
-        mainProteinEdit[i].className = "mainproteinedit shown";
-      }
+      globe.toggleVis(mainProteinEdit, "mainproteinedit shown");
     }
   }
 }

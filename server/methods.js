@@ -5,25 +5,39 @@ Meteor.methods({
     'removeResident': function(resident){
         ResidentList.remove(resident);
     },
-    'refresh': function(id) {
-      ResidentList.find({_id: id});
-    },
-
     'createMeal': function(meal){
     	MealList.insert(meal);
     },
-    'editConsistency': function(id, newConsistency) {
-      ResidentList.update({_id: id}, {$set: {consistency: newConsistency}});
+    'editSelect': function(id, select, field) {
+      console.log(select + " " + field);
+      selector = {};
+      selector[field] = select;
+      ResidentList.update({_id: id}, {$set: selector});
     },
-
-    'editHotBev': function(id, newHotBev) {
-      ResidentList.update({_id: id}, {$set: {hotBev: newHotBev}});
+    'toggleTerm': function(resident, name) {
+      console.log(name);
+      id = resident._id;
+      if (name == "lcs") status = resident.lcs;
+      if (name == "nas") status = resident.nas;
+      if (name == "lowSodium") status = resident.lowSodium;
+      if (name == "renal") status = resident.renal;
+      console.log(status);
+      pushTerm = {};
+      pushTerms = {};
+      pushTerms["terms"] = name;
+      if (status === false) {
+        pushTerm[name] = true;
+        ResidentList.update({_id: id}, {$push: pushTerms});
+        ResidentList.update({_id: id}, {$set: pushTerm});
+      }
+      if (status === true) {
+        pushTerm[name] = false;
+        ResidentList.update({_id: id}, {$pull: pushTerms});
+        ResidentList.update({_id: id}, {$set: pushTerm});
+      }
     },
-
-    'editColdBev': function(id, newColdBev) {
-      ResidentList.update({_id: id}, {$set: {coldBev: newColdBev}});
-    },
-    'toggleTerm': function(id, term, name) {
+    /*'toggleTerm': function(id, term, name) {
+      console.log("id: " + id + " term: " + term + " name: " + name);
       pushTerm = {};
       pushTerms = {};
       pushTerms["terms"] = name;
@@ -42,5 +56,5 @@ Meteor.methods({
         ResidentList.update({_id: id}, {$pull: pushTerms});
         ResidentList.update({_id: id}, {$set: pushTerm});
       }
-    }
+    }*/
 });

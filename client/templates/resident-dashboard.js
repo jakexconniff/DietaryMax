@@ -13,7 +13,7 @@ $(window).scroll(function(event) {
     var scrollTop = $(this).scrollTop();
     if (scrollTop > lastScrollTop) {
       globe.applyEdits(swapEdit);
-      Session.set("residentLimit", Session.get("residentLimit") + 8);
+      Session.set("residentLimit", Sxession.get("residentLimit") + 8);
 
     }
     lastScrollTop = scrollTop;
@@ -22,9 +22,8 @@ $(window).scroll(function(event) {
     resident : function() {
       Meteor.subscribe('Residents.public');
       var searchParam = Session.get("search");
-      //var searchQuery = new RegExp(searchParam, "i");
-      var searchQuery = new RegExp('^' + searchParam, "i");
-      console.log()
+      var searchQuery = new RegExp(searchParam, "i");
+      //var searchQuery = new RegExp('^' + searchParam, "i");
       if (Session.get("searchBy") == "numeric") {
         var residents = ResidentList.find({rmNum: searchQuery}, { sort: { 'rmNum' : 1 }},
         {limit: Session.get("residentLimit")});
@@ -34,9 +33,7 @@ $(window).scroll(function(event) {
         { sort: { 'rmNum' : 1 }} ,{limit: Session.get("residentLimit")});}
     },
     displayDislikes: function() {
-      outputDislikes = this.dislikes;
-      console.log(outputDislikes);
-      return outputDislikes;
+      return this.dislikes;
     },
 
     residentId: function() {
@@ -51,114 +48,42 @@ $(window).scroll(function(event) {
       return this.terms.join(", ");
     },
 
-    showLcs: function() {
-      if (this.terms.indexOf("lcs") >= 0) {
-        temp = '<span>lcs</span> <span class="red glyphicon glyphicon-remove"></span> ';
-      }
-      if (this.terms.indexOf("lcs") == -1) {
-        temp = " ";
-
-      }
-      return temp;
-    },
     showLcsInit: function() {
-      if (this.lcs) {
-        return "lcs ";
-      }
+      if (this.lcs) return "lcs ";
     },
     showNasInit: function() {
-      if (this.nas) {
-        return "nas ";
-      }
+      if (this.nas) return "nas ";
     },
     showLowSodiumInit: function() {
-      if (this.lowSodium) {
-        return "low sodium ";
-      }
+      if (this.lowSodium) return "low sodium ";
     },
     showRenalInit: function() {
-      if (this.renal) {
-        return "renal ";
-      }
+      if (this.renal) return "renal ";
     },
 
+    showLcs: function() {
+      return globe.removeTerm(this, "lcs" , "red glyphicon glyphicon-remove", true);
+    },
     showNas: function() {
-      if (this.terms.indexOf("nas") >= 0) {
-        temp = '<span>nas</span> <span class="red glyphicon glyphicon-remove"></span>';
-      }
-      if (this.terms.indexOf("nas") == -1) {
-        temp = "";
-
-      }
-    return temp + " ";
+      return globe.removeTerm(this, "nas", "red glyphicon glyphicon-remove", true);
   },
     showLowSodium: function() {
-        if (this.terms.indexOf("low sodium") >= 0) {
-          temp = '<span>low sodium</span> <span class="red glyphicon glyphicon-remove"></span>';
-        }
-        if (this.terms.indexOf("low sodium") == -1) {
-          temp = "";
-
-        }
-      return temp + " ";
+        return globe.removeTerm(this, "low sodium", "red glyphicon glyphicon-remove", true);
     },
     showRenal: function() {
-        if (this.terms.indexOf("renal") >= 0) {
-          temp = '<span>renal</span> <span class="red glyphicon glyphicon-remove"></span>';
-        }
-        if (this.terms.indexOf("renal") == -1) {
-          temp = "";
-
-        }
-      return temp + " ";
+        return globe.removeTerm(this, "renal", "red glyphicon glyphicon-remove", true);
     },
     addLcs: function() {
-      if (this.terms.indexOf("lcs") == -1) {
-        temp = '<span>lcs</span> <span class="green glyphicon glyphicon-plus"></span>';
-      }
-      if (this.terms.indexOf("lcs") >= 0) {
-        temp = "";
-        for(var i = termsOpp.length-1; i > -1; i--){
-          if (termsOpp[i] === "lcs") termsOpp.splice(i, 1);
-        }
-      }
-      return temp;
+      return globe.removeTerm(this, "lcs", "green glyphicon glyphicon-plus", false);
     },
     addNas: function() {
-      if (this.terms.indexOf("nas") == -1) {
-        temp = '<span>nas</span> <span class="green glyphicon glyphicon-plus"></span>';
-      }
-      if (this.terms.indexOf("nas") >= 0) {
-        temp = "";
-        for(var i = termsOpp.length-1; i > -1; i--){
-          if (termsOpp[i] === "nas") termsOpp.splice(i, 1);
-        }
-      }
-      return temp + " ";
+      return globe.removeTerm(this, "nas", "green glyphicon glyphicon-plus", false);
     },
     addLowSodium: function() {
-      if (this.terms.indexOf("low sodium") == -1) {
-        temp = '<span>low sodium</span> <span class="green glyphicon glyphicon-plus"></span>';
-      }
-      if (this.terms.indexOf("low sodium") >= 0) {
-        temp = "";
-        for(var i = termsOpp.length-1; i > -1; i--){
-          if (termsOpp[i] === "low sodium") termsOpp.splice(i, 1);
-        }
-      }
-      return temp + " ";
+      return globe.removeTerm(this, "low sodium", "green glyphicon glyphicon-plus", false);
     },
     addRenal: function() {
-      if (this.terms.indexOf("renal") == -1) {
-        temp = '<span>renal</span> <span class="green glyphicon glyphicon-plus"></span>';
-      }
-      if (this.terms.indexOf("renal") >= 0) {
-        temp = "";
-        for(var i = termsOpp.length-1; i > -1; i--){
-          if (termsOpp[i] === "renal") termsOpp.splice(i, 1);
-        }
-      }
-      return temp + " ";
+      return globe.removeTerm(this, "renal", "green glyphicon glyphicon-plus", false);
     },
   });
 
@@ -166,78 +91,22 @@ $(window).scroll(function(event) {
     'click #toggleEditSpan': function (){
       swapEdit++;
       Session.set("swapEdit", swapEdit);
-      console.log(this);
-      console.log(swapEdit);
       globe.applyEdits(swapEdit);
-      console.log(document.getElementsByClassName("termsedit"));
     },
-    'click #editLiquidToggle': function() {
-      console.log(this);
-      console.log(event.target.text);
+    'click .selector': function() {
       if (event.target.text) {
-        Meteor.call('editConsistency', this._id, event.target.text);
-      }
-
-    },
-
-    'click #editHotBevToggle': function() {
-      if (event.target.text) {
-        Meteor.call('editHotBev', this._id, event.target.text);
-      }
-    },
-
-    'click #editColdBevToggle': function() {
-      if (event.target.text) {
-        Meteor.call('editColdBev', this._id, event.target.text);
+        Meteor.call('editSelect', this._id, event.target.text, event.target.parentNode.className);
       }
     },
 
     'click #removeResident': function() {
       Meteor.call('removeResident', this);
     },
-
-    'click .removelcs': function() {
-      if (swapEdit % 2 == 1) {
-        console.log(this._id);
-        console.log(this.lcs);
-        Meteor.call('toggleTerm', this._id, this.lcs, "lcs");
-      }
-    },
-    'click #removeNas': function() {
-      if (swapEdit % 2 == 1) {
-        Meteor.call('toggleTerm', this._id, this.nas, "nas");
-      }
-    },
-    'click #removeLowSodium': function() {
-      if (swapEdit % 2 == 1) {
-        Meteor.call('toggleTerm', this._id, this.lowSodium, "low sodium");
-      }
-    },
-    'click #removeRenal': function() {
-      if (swapEdit % 2 == 1) {
-        Meteor.call('toggleTerm', this._id, this.renal, "renal");
-      }
-    },
-
-    'click #addLcs': function() {
-      console.log(document.getElementById("addLcs"));
-      console.log(this._id);
-      console.log(this.lcs);
-        Meteor.call('toggleTerm', this._id, this.lcs, "lcs");
-    },
-
-    'click #addNas': function() {
-      console.log(document.getElementById("addNas"));
-        Meteor.call('toggleTerm', this._id, this.nas, "nas");
-    },
-
-    'click #addLowSodium': function() {
-      console.log(document.getElementById("addLowSodium"));
-        Meteor.call('toggleTerm', this._id, this.lowSodium, "low sodium");
-    },
-
-    'click #addRenal': function() {
-      console.log(document.getElementById("addRenal"));
-              Meteor.call('toggleTerm', this._id, this.renal, "renal");
+    
+    'click .rest': function() {
+      term = event.target.innerHTML;
+      if (term == "low sodium") term = "lowSodium";
+      console.log(this);
+      Meteor.call('toggleTerm', this, term);
     },
   });
