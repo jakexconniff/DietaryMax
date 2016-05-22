@@ -36,25 +36,4 @@ Meteor.methods({
         ResidentList.update({_id: id}, {$set: pushTerm});
       }
     },
-    /*'toggleTerm': function(id, term, name) {
-      console.log("id: " + id + " term: " + term + " name: " + name);
-      pushTerm = {};
-      pushTerms = {};
-      pushTerms["terms"] = name;
-      if (term === false) {
-        if (name == "low sodium") {
-          name = "lowSodium";
-        }
-        pushTerm[name] = true;
-        ResidentList.update({_id: id}, {$push: pushTerms});
-        ResidentList.update({_id: id}, {$set: pushTerm});
-      }
-      if (term === true) {
-        if (name == "low sodium")
-          name = "lowSodium";
-        pushTerm[name] = false;
-        ResidentList.update({_id: id}, {$pull: pushTerms});
-        ResidentList.update({_id: id}, {$set: pushTerm});
-      }
-    }*/
 });

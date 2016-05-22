@@ -16,10 +16,9 @@ $(window).scroll(function(event) {
 	Template.cardDashboard.onCreated(function() {
 		Session.set("residentLimit", 8);
 		const meals = Meteor.subscribe('Meals.public');
-
 	});
-
 	Template.cardDashboard.helpers({
+
 		card: function() {
 			return CardsList.find().fetch();
 		},
@@ -51,66 +50,30 @@ $(window).scroll(function(event) {
 			return this.coldBev;
 		},
 		outputProtein: function() {
-			let selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
-			var protein = Session.get("displayMainProtein");
-			// dislike check here.
-			//if (this.dislikes.indexOf(displayMainProtein)) return Session.get('displayAltProtein');
+	 	var selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
 			if (selectedMeal) {
-				if (selectedMeal.restrictLcsMainProtein == true) {
-					//if (this.lcs == true) return Session.get('displayAltProtein');
-					if (this.lcs == true) {
-						var protein = Session.get("displayAltProtein");
-					}
-				}
-				if (selectedMeal.restrictNasMainProtein == true) {
-					if (this.nas == true) {
-						var protein = Session.get("displayAltProtein");
-					}
-				}
-				if (selectedMeal.restrictLowSodiumMainProtein == true) {
-					if (this.lowSodium == true) {
-						var protein = Session.get("displayAltProtein");
-					}
-				}
-				if (selectedMeal.restrictRenalMainProtein == true) {
-					if (this.renal == true) {
-						var protein = Session.get("displayAltProtein");
-					}
-				}
+				protein = globe.outputPlate(selectedMeal, this,  "lcs", "protein");
 				return protein;
 			}
 		},
 		outputVeg: function() {
-			let selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
-			var veg = Session.get("displayVegOne");
+	 	var selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
 			if (selectedMeal) {
-				if (selectedMeal.restrictLcsVegOne) {
-					if (this.lcs) {
-						var veg = Session.get("displayVegTwo");
-					}
-				}
-				if (selectedMeal.restrictNasVegOne) {
-					if (this.nas) {
-						var veg = Session.get("displayVegTwo");
-					}
-				}
-				if (selectedMeal.restrictLowSodiumVegOne) {
-					if (this.lowSodium) {
-						var veg = Session.get("displayVegTwo");
-					}
-				}
-				if (selectedMeal.restrictRenalVegOne) {
-					if (this.renal) {
-						var veg = Session.get("displayVegTwo");
-					}
-				}
+				veg = globe.outputPlate(selectedMeal, this,  "lcs", "veg");
+				return veg;
 			}
-			return veg;
+		},
+
+		outputStarch: function() {
+	 	var selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
+			if (selectedMeal) {
+				starch = globe.outputPlate(selectedMeal, this,  "lcs", "starch");
+				return starch;
+			}
 		},
 
 		displayMealSelect: function() {
 			select = Session.get("selectedTime");
-			console.log(select);
 			if (select == "") {
 				return "Meal Select";
 			}
@@ -119,44 +82,13 @@ $(window).scroll(function(event) {
 			}
 		},
 
-		outputStarch: function() {
-			let selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
-			var starch = Session.get("displayStarchOne");
-			if (selectedMeal) {
-				if (selectedMeal.restrictLcsVegOne) {
-					if (this.lcs) {
-						var starch = Session.get("displayStarchTwo");
-					}
-				}
-				if (selectedMeal.restrictNasVegOne) {
-					if (this.nas) {
-						var starch = Session.get("displayStarchTwo");
-					}
-				}
-				if (selectedMeal.restrictLowSodiumVegOne) {
-					if (this.lowSodium) {
-						var starch = Session.get("displayStarchTwo");
-					}
-				}
-				if (selectedMeal.restrictRenalVegOne) {
-					if (this.renal) {
-						var starch = Session.get("displayStarchTwo");
-					}
-				}
-			}
-			return starch;
-		},
-		itemCheck: function(item, term, restriction, selectedMeal){
-
-		},
-
-		isRenal: function(){
-
-		},
-
 		terms: function() {
-			console.log(this.terms);
-			return this.terms.join(", ");
+			var termsOut = "";
+			if (this.lcs == true) termsOut += "lcs ";
+			if (this.nas == true) termsOut += "nas ";
+			if (this.lowSodium == true) termsOut += "low sodium ";
+			if (this.renal == true) termsOut += "renal ";
+			return termsOut;
 		}
 	});
 
@@ -166,13 +98,6 @@ $(window).scroll(function(event) {
 		},
 
 		'click .dropdownValue': function() {
-			//console.log(MealList.findOne({'id':"meal1"}).mainProtein);
-			//console.log(ResidentList.findOne({'id': "resident1"}));
-			//console.log(event.target.text);
-			//console.log($('.dropdownValue')[0].innerHTML);
-			// Rips from the dropdown
-			//selectedTime = $('.dropdownValue').find(":selected").text();
-
 			selectedTime = event.target.text;
 			selectedTimeArray = selectedTime.split(' ');
 			Session.set('selectedTime', selectedTime);

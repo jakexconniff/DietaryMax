@@ -62,28 +62,28 @@ $(window).scroll(function(event) {
     },
 
     showLcs: function() {
-      return globe.removeTerm(this, "lcs" , "red glyphicon glyphicon-remove", true);
+      return globe.displayTerm(this, "lcs" , "red glyphicon glyphicon-remove", true);
     },
     showNas: function() {
-      return globe.removeTerm(this, "nas", "red glyphicon glyphicon-remove", true);
+      return globe.displayTerm(this, "nas", "red glyphicon glyphicon-remove", true);
   },
     showLowSodium: function() {
-        return globe.removeTerm(this, "low sodium", "red glyphicon glyphicon-remove", true);
+        return globe.displayTerm(this, "low sodium", "red glyphicon glyphicon-remove", true);
     },
     showRenal: function() {
-        return globe.removeTerm(this, "renal", "red glyphicon glyphicon-remove", true);
+        return globe.displayTerm(this, "renal", "red glyphicon glyphicon-remove", true);
     },
     addLcs: function() {
-      return globe.removeTerm(this, "lcs", "green glyphicon glyphicon-plus", false);
+      return globe.displayTerm(this, "lcs", "green glyphicon glyphicon-plus", false);
     },
     addNas: function() {
-      return globe.removeTerm(this, "nas", "green glyphicon glyphicon-plus", false);
+      return globe.displayTerm(this, "nas", "green glyphicon glyphicon-plus", false);
     },
     addLowSodium: function() {
-      return globe.removeTerm(this, "low sodium", "green glyphicon glyphicon-plus", false);
+      return globe.displayTerm(this, "low sodium", "green glyphicon glyphicon-plus", false);
     },
     addRenal: function() {
-      return globe.removeTerm(this, "renal", "green glyphicon glyphicon-plus", false);
+      return globe.displayTerm(this, "renal", "green glyphicon glyphicon-plus", false);
     },
   });
 
@@ -102,7 +102,7 @@ $(window).scroll(function(event) {
     'click #removeResident': function() {
       Meteor.call('removeResident', this);
     },
-    
+
     'click .rest': function() {
       term = event.target.innerHTML;
       if (term == "low sodium") term = "lowSodium";

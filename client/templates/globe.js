@@ -1,5 +1,69 @@
 globe = {
-  removeTerm: function(resident, term, glyph, action) {
+  outputPlate: function(subject, resident, value, item) {
+    console.log(MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")}));
+    console.log(subject);
+    console.log(resident);
+    if (item == "protein") {
+      output = Session.get("displayMainProtein");
+      var testOne = subject.restrictLcsMainProtein;
+      var testTwo = subject.restrictNasMainProtein;
+      var testThree = subject.restrictLowSodiumMainProtein;
+      var testFour = subject.restrictRenalMainProtein;
+    }
+    if (item == "veg") {
+      output = Session.get("displayVegOne");
+      var testOne = subject.restrictLcsVegOne;
+      var testTwo = subject.restrictNasVegOne;
+      var testThree = subject.restrictLowSodiumVegOne;
+      var testFour = subject.restrictRenalVeg
+    }
+    if (item == "starch") {
+      output = Session.get("displayStarchOne");
+      var testOne = subject.restrictLcsStarchOne;
+      var testTwo = subject.restrictNasStarchOne;
+      var testThree = subject.restrictLowSodiumStarchOne;
+      var testFour = subject.restrictRenalStarchOne;
+    }
+    if (testOne) {
+      if (resident.lcs) {
+        globe.altCheck(item);
+      }
+    }
+    if (testTwo) {
+      if (resident.nas) {
+        globe.altCheck(item);
+      }
+    }
+    if (testThree) {
+      if (resident.lowSodium) {
+        globe.altCheck(item);
+      }
+    }
+    if (testFour) {
+      console.log("testFour");
+      if (resident.renal) {
+        globe.altCheck(item);
+      }
+    }
+    console.log(output);
+    return output;
+  },
+  
+  altCheck: function(item) {
+    console.log(item);
+    if (item == "protein") {
+      output = Session.get("displayAltProtein");
+    }
+    if (item == "veg") {
+      output = Session.get("displayVegTwo");
+    }
+    if (item == "starch") {
+      output = Session.get("displayStarchTwo");
+    }
+    return output;
+  },
+
+  displayTerm: function(resident, term, glyph, action) {
     var status = '';
     var temp = '';
     if (term == "lcs") status = resident.lcs;
