@@ -40,60 +40,21 @@
     });
 
     Template.addResident.events({
-      'click #regularTexture' : function () {
-        Session.set('selectedTexture', 'Regular ');
+      'click .thickness': function() {
+        console.log(event.target.innerHTML);
+        Session.set('selectedThickness', event.target.innerHTML);
       },
-      'click #groundTexture' : function () {
-        Session.set('selectedTexture', 'Ground ');
+      'click .texture': function() {
+        Session.set('selectedTexture', event.target.innerHTML);
       },
-      'click #pureeTexture' : function () {
-        Session.set('selectedTexture', 'Puree ');
+      'click .hot': function() {
+        Session.set('selectedHotBev', event.target.innerHTML);
       },
-      'click #thinThickness' : function () {
-        Session.set('selectedThickness', 'Thin ');
-      },
-      'click #nectarThickness' : function () {
-        Session.set('selectedThickness', 'Nectar ');
-      },
-      'click #honeyThickness' : function () {
-        Session.set('selectedThickness', 'Honey ');
-      },
-      'click #coffeeHotBev' : function () {
-        Session.set('selectedHotBev', 'Coffee');
-      },
-      'click #teaHotBev' : function () {
-        Session.set('selectedHotBev', 'Tea');
-      },
-      'click #hotCocoaHotBev' : function () {
-        Session.set('selectedHotBev', 'Hot Cocoa');
-      },
-      'click #noHotBev' : function () {
-        Session.set('selectedHotBev', 'none');
-      },
-      'click #orangeJuiceColdBev' : function () {
-        Session.set('selectedColdBev', 'Orange Juice');
-      },
-      'click #appleJuiceColdBev' : function () {
-        Session.set('selectedColdBev', 'Apple Juice');
-      },
-      'click #cranberryJuiceColdBev' : function () {
-        Session.set('selectedColdBev', 'Cranberry Juice');
-      },
-      'click #gingerAleColdBev' : function () {
-        Session.set('selectedColdBev', 'Ginger Ale');
-      },
-      'click #colaColdBev' : function () {
-        Session.set('selectedColdBev', 'Cola');
-      },
-      'click #noColdBev' : function () {
-        Session.set('selectedColdBev', 'none');
+      'click .cold': function() {
+        Session.set('selectedColdBev', event.target.innerHTML);
       },
       'submit #addForm' : function () {
         event.preventDefault();
-        console.log(event.target.inputName.value);
-        console.log(event.target.inputRmNum.value);
-        console.log(Session.get('selectedTexture'));
-        console.log(Session.get('selectedThickness'));
         if (event.target.inputName.value == "" || event.target.inputRmNum.value == "" || Session.get('selectedTexture') == ""
           || Session.get('selectedThickness') == "") {
           cardSubmitText = "You have left a field blank! All fields but restrictions are required.";
@@ -104,21 +65,21 @@
         cardSubmitText = "You have successfully added a Resident!";
         document.getElementById("cardSubmitResults").innerHTML = cardSubmitText;
         residentCount += 1;
-        console.log(event.target.lcs);
         var resident = {
           name : event.target.inputName.value,
           rmNum: event.target.inputRmNum.value,
           dislikes: event.target.inputDislikes.value,
-          texture: Session.get('selectedTexture'),
-          consistency : Session.get('selectedThickness'),
+          texture: event.target.texture.value,
+          consistency : event.target.thickness.value,
           lcs: event.target.lcs.checked,
           nas: event.target.nas.checked,
           lowSodium: event.target.lowSodium.checked,
           renal: event.target.renal.checked,
-          hotBev: Session.get("selectedHotBev"),
-          coldBev: Session.get("selectedColdBev"),
+          hotBev: event.target.hot.value,
+          coldBev: event.target.cold.value,
           terms: []
         };
+        console.log(event.target.cold);
 
         if (resident.dislikes) {
           var dislikesArray = resident.dislikes.split(" ");
