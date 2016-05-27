@@ -1,8 +1,6 @@
 globe = {
   outputPlate: function(subject, resident, value, item) {
-    console.log(MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")}));
-    console.log(subject);
-    console.log(resident);
+
     if (item == "protein") {
       output = Session.get("displayMainProtein");
       var testOne = subject.restrictLcsMainProtein;
@@ -15,7 +13,7 @@ globe = {
       var testOne = subject.restrictLcsVegOne;
       var testTwo = subject.restrictNasVegOne;
       var testThree = subject.restrictLowSodiumVegOne;
-      var testFour = subject.restrictRenalVeg
+      var testFour = subject.restrictRenalVeg;
     }
     if (item == "starch") {
       output = Session.get("displayStarchOne");
@@ -24,6 +22,10 @@ globe = {
       var testThree = subject.restrictLowSodiumStarchOne;
       var testFour = subject.restrictRenalStarchOne;
     }
+      outputReg = new RegExp(output, 'i');
+      console.log(resident.dislikes);
+      var testDislikes = (outputReg.test(resident.dislikes));
+
     if (testOne) {
       if (resident.lcs) {
         globe.altCheck(item);
@@ -40,19 +42,24 @@ globe = {
       }
     }
     if (testFour) {
-      console.log("testFour");
       if (resident.renal) {
         globe.altCheck(item);
       }
     }
-    console.log(output);
+    if (testDislikes) {
+      globe.altCheck(item);
+      console.log(output);
+    }
+
     return output;
   },
-  
+
   altCheck: function(item) {
-    console.log(item);
+
     if (item == "protein") {
+
       output = Session.get("displayAltProtein");
+
     }
     if (item == "veg") {
       output = Session.get("displayVegTwo");
@@ -74,12 +81,6 @@ globe = {
       temp = '<span>' + term + '</span> <span class="' + glyph + '"></span>';
     }
     return temp;
-  },
-
-  toggleVis: function(target, classMod) {
-    for (var i=0; i<target.length; i++) {
-      target[i].className = classMod;
-    }
   },
 
   addTerm: function(resident, term, glyph) {
@@ -143,5 +144,11 @@ globe = {
     if (swapEdit % 2 == 1) {
       globe.toggleVis(mainProteinEdit, "mainproteinedit shown");
     }
-  }
+  },
+
+  toggleVis: function(target, classMod) {
+    for (var i=0; i<target.length; i++) {
+      target[i].className = classMod;
+    }
+  },
 }

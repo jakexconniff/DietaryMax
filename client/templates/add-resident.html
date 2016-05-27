@@ -42,10 +42,10 @@
 				<div class="form-group">
 					<label for="addMealTexture" class="col-sm-3 control-label">Texture</label>
 					<div class="col-sm-9">
-						<button type="button" id="addMealTexture" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							{{displayMealTexture}} <span class="caret"></span>
+						<button type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span id="addMealTexture">{{displayMealTexture}}</span> <span class="caret"></span>
 						</button>
-						<ul class="dropdown-menu centerred-dropdown">
+						<ul class="dropdown-menu centerred-dropdown" id="texture">
 							<li class="dropdownValue texture"><a href="#" id="regularTexture" value="regular">Regular</a></li>
 							<li role="separator" class="divider"></li>
 							<li class="dropdownValue texture"><a href="#" id="groundTexture" value="ground">Ground</a></li>
@@ -58,8 +58,8 @@
 				<div class="form-group">
 					<label for="displayLiquidThickness" class="col-sm-3 control-label">Thickness</label>
 					<div class="col-sm-9">
-						<button type="button" id="addLiquidThickness" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							{{displayLiquidThickness}} <span class="caret"></span>
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span id="addLiquidThickness">{{displayLiquidThickness}}</span> <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu centerred-dropdown">
 							<li class="dropdownValue thickness"><a href="#" id="thinThickness" value="Thin">Thin</a></li>

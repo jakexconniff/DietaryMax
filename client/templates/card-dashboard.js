@@ -28,7 +28,7 @@ $(window).scroll(function(event) {
 		resident: function() {
 			Meteor.subscribe('Residents.all', Session.get("residentLimit"));
 			var searchParam = Session.get("search");
-      var searchQuery = new RegExp(searchParam, "i");
+			var searchQuery = new RegExp(searchParam, "i");
 			if (Session.get("searchBy") == "letter") {
 				return ResidentList.find({name: searchQuery}, { sort: { 'rmNum' : 1 }} ,{limit: Session.get("residentLimit")});
 			}
@@ -50,14 +50,14 @@ $(window).scroll(function(event) {
 			return this.coldBev;
 		},
 		outputProtein: function() {
-	 	var selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
+			var selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
 			if (selectedMeal) {
 				protein = globe.outputPlate(selectedMeal, this,  "lcs", "protein");
 				return protein;
 			}
 		},
 		outputVeg: function() {
-	 	var selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
+			var selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
 			if (selectedMeal) {
 				veg = globe.outputPlate(selectedMeal, this,  "lcs", "veg");
 				return veg;
@@ -65,7 +65,7 @@ $(window).scroll(function(event) {
 		},
 
 		outputStarch: function() {
-	 	var selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
+			var selectedMeal = MealList.findOne({'mealTime': Session.get("targetTime"), 'mealDay': Session.get("targetDay")});
 			if (selectedMeal) {
 				starch = globe.outputPlate(selectedMeal, this,  "lcs", "starch");
 				return starch;
